@@ -44,8 +44,8 @@ resource "yandex_compute_instance" "vm-1" {
     nat = true
   }
 
-  metadata = {
-    foo      = "bar"
+  metadata = {  #все что пишется в этом блоке выполнеяется только после инициации ВМ
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    user-data = "${file("init.sh")}" #с помощью этого параметра можно передавать например скрипт на исполнение
   }
 }
