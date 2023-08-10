@@ -23,3 +23,28 @@ resource "yandex_vpc_subnet" "practice-vpc-subnet" {
   v4_cidr_blocks = ["10.2.0.0/16"]
   network_id     = "${yandex_vpc_network.practice-vpc.id}" #на прямую (типо enpqs3mggbcvk7ibuqga) лучше не передавать идентификатор сети, к которой пренадлежит данная подсеть, yandex_vpc_network.practice-vpс тип ресурса и его назначение через точку - инд. идентиф. на который можно ссылаться как на переменную. Точка id (.id) указывает на то, какой параметр нужно передать.
 }
+
+resource "yandex_compute_instance" "vm-1" {
+  name        = "virtual-machine"
+  platform_id = "standard-v1"
+
+  resources {
+    cores  = 2
+    memory = 2
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd80eup4e4h7mmodr9d4" #чтобы узнать вбиваем в гугле, переходим в доку яндекс клуд и находим там команду которая покажет доступные образы в консоли: yc compute image list --folder-id standard-images | grep debian-11 (вторая чать значит что нужно искать дебиан 11), в выводе берем последнюю (просто самую верхнюю)
+    }
+  }
+
+  network_interface {
+    subnet_id = "${yandex_vpc_subnet.practice-vpc-subnet.id}"
+  }
+
+  metadata = {
+    foo      = "bar"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+  }
+}
