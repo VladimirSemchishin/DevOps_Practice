@@ -7,11 +7,13 @@ terraform {
   required_version = ">= 0.13"
 
   backend "s3" {
-    endpoint                = "storage.yandexcloud.net"
-    bucket                  = "for-terraform-tfstate"
-    region                  = "ru-central1"
-    key                     = "terraform-yndex-vm1.tfstate"
-    shared_credentials_fil = "/home/smvn/Desktop/Github/DevOps_Practice/Terraform_start/learn-terraform-yandex-cloud/storage.key" #передать идентификатор и секретный ключ, но не напрямую в коде, потому что это тупо, а через файл, потому что это умно.
+    endpoint = "storage.yandexcloud.net"
+    bucket   = "for-terraform-tfstate"
+    region   = "ru-central1"
+    key      = "terraform-yndex-vm1.tfstate"
+    #shared_credentials_file = "/home/smvn/Desktop/Github/DevOps_Practice/Terraform_start/learn-terraform-yandex-cloud/storage.key" #передать идентификатор и секретный ключ, но не напрямую в коде, потому что это тупо, а через файл, потому что это умно.
+    access_key = "YCAJE30R9niv6yiKsQdaSMudc"
+    secret_key = "YCPCGxkBtcUNYY0LOnBAUlr3xooVB4vxPukRWnW6"
 
     skip_region_validation      = true
     skip_credentials_validation = true
