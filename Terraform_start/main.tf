@@ -24,6 +24,37 @@ resource "yandex_vpc_subnet" "practice-vpc-subnet" {
   network_id     = yandex_vpc_network.practice-vpc.id #на прямую (типо enpqs3mggbcvk7ibuqga) лучше не передавать идентификатор сети, к которой пренадлежит данная подсеть, yandex_vpc_network.practice-vpс тип ресурса и его назначение через точку - инд. идентиф. на который можно ссылаться как на переменную. Точка id (.id) указывает на то, какой параметр нужно передать.
 }
 
+resource "yandex_vpc_security_group" "sec-group-1" {
+  name        = "security group for VM-1"
+  description = "description for my security group"
+  network_id  = yandex_vpc_network.practice-vpc.id
+
+  labels = {
+    my-label = "my-label-value"
+  }
+
+  dynamic "ingress" {
+    for_each = ["80", "443"]
+    content {
+      protocol       = "TCP"
+      description    = "rule1 description"
+      v4_cidr_blocks = ["0.0.0.0/0"]
+      from_port           = ingress.value
+      to_port = ingress.value
+    }
+  }
+
+  egress {
+    protocol       = "ANY"
+    description    = "rule2 description"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    from_port      = 0
+    to_port        = 65535
+  }
+
+ 
+}
+
 resource "yandex_vpc_address" "const-ip-vm1" { #для установки постоянного адреса ВМ-1
   name = "IpAddressVM1"
 
@@ -66,3 +97,5 @@ output "external_ip" { #первый вариант задать выходно�
 output "external_ip2" { #в названии можно писать все что угодно, через output в терраформе указываются выходные данные. Тут должен быть тот же вывод что и в прошлои output но значение задается идентификатором переменной в которую клали занчение (  network_interface) то есть идентификатор nat_ip_address (похоже на путь)
   value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
+
+
