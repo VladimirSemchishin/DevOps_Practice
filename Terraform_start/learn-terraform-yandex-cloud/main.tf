@@ -5,6 +5,17 @@ terraform {
     }
   }
   required_version = ">= 0.13"
+
+  backend "s3" {
+    endpoint                = "storage.yandexcloud.net"
+    bucket                  = "for-terraform-tfstate"
+    region                  = "ru-central1"
+    key                     = "terraform-yndex-vm1.tfstate"
+    shared_credentials_fil = "/home/smvn/Desktop/Github/DevOps_Practice/Terraform_start/learn-terraform-yandex-cloud/storage.key" #передать идентификатор и секретный ключ, но не напрямую в коде, потому что это тупо, а через файл, потому что это умно.
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
 }
 
 // Configure the Yandex.Cloud provider
@@ -39,8 +50,8 @@ resource "yandex_vpc_security_group" "sec-group-1" {
       protocol       = "TCP"
       description    = "rule1 description"
       v4_cidr_blocks = ["0.0.0.0/0"]
-      from_port           = ingress.value
-      to_port = ingress.value
+      from_port      = ingress.value
+      to_port        = ingress.value
     }
   }
 
@@ -52,7 +63,7 @@ resource "yandex_vpc_security_group" "sec-group-1" {
     to_port        = 65535
   }
 
- 
+
 }
 
 resource "yandex_vpc_address" "const-ip-vm1" { #для установки постоянного адреса ВМ-1
