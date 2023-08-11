@@ -26,9 +26,9 @@ provider "yandex" {
 
 #Создание регионального кластера K8s
 
-locals {  #сюда записываются не переопределяемые значения, которые множество раз исп. в конфигурации. Обычно его так не исп, как указано, потом исправим.
-  cloud_id    = "b1gq90dgh25********"
-  folder_id   = "b1gia87mbaom********"
+locals { #сюда записываются не переопределяемые значения, которые множество раз исп. в конфигурации. Обычно его так не исп, как указано, потом исправим.
+  cloud_id    = "b1gm3hna85fgcv7mif87"
+  folder_id                = "b1gll7vtke087ibf3i59"
   k8s_version = "1.22"
   sa_name     = "myaccount"
 }
@@ -105,30 +105,26 @@ resource "yandex_vpc_security_group" "k8s-main-sg" { #создание груп�
 
 
 resource "yandex_iam_service_account" "myaccount" { #создание сервесного аккаунта и назначение ролей необходимых для работы кластера. Можно не создавать несколько сервисных акк, но безопаснее если на каждом сервисе будет свой.
-  name        = local.sa_name
+  name        = local.sa_name #обращение к блоку local
   description = "K8S regional service account"
 }
 
-resource "yandex_resourcemanager_folder_iam_member" "k8s-clusters-agent" { #назначение роли
-  # Сервисному аккаунту назначается роль "k8s.clusters.agent".
-  folder_id = local.folder_id
-  role      = "k8s.clusters.agent"
+resource "yandex_resourcemanager_folder_iam_member" "editor" { #назначение роли
+  # Сервисному аккаунту назначается роль "editor".
+  folder_id = local.folder_id #обращение к блоку local
+  role      = "editor"
   member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}"
-}
-
-resource "yandex_resourcemanager_folder_iam_member" "vpc-public-admin" { #назначение роли
-  # Сервисному аккаунту назначается роль "vpc.publicAdmin".
-  folder_id = local.folder_id
-  role      = "vpc.publicAdmin"
-  member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}" #назначение роли
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "images-puller" { #назначение роли
   # Сервисному аккаунту назначается роль "container-registry.images.puller".
-  folder_id = local.folder_id
+  folder_id = local.folder_id #обращение к блоку local
   role      = "container-registry.images.puller"
   member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}"
 }
+
+
+
 
 resource "yandex_kms_symmetric_key" "kms-key" {
   # Ключ для шифрования важной информации, такой как пароли, OAuth-токены и SSH-ключи.
@@ -138,7 +134,7 @@ resource "yandex_kms_symmetric_key" "kms-key" {
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "viewer" {
-  folder_id = local.folder_id
+  folder_id = local.folder_id #обращение к блоку local
   role      = "viewer"
   member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}"
 }
@@ -148,8 +144,10 @@ resource "yandex_resourcemanager_folder_iam_member" "viewer" {
  
 resource "yandex_kubernetes_cluster" "k8s-regional" {  #создание ресурса кубрнетес кластер
   network_id = yandex_vpc_network.mynet.id
+  network_policy_provider = "CALITO" # контроллер для управления сетевыми политиками, установив занчение CALITO
   master {
-    version = local.k8s_version
+    version = local.k8s_version #обращение к блоку local
+    publicpublic_ip = true #даем кластеру внешний ip адресс
     regional {  #для кластера требуется задействовать 3 подсети, в каждой из зон доступности
       region = "ru-central1"
       location {
@@ -170,8 +168,7 @@ resource "yandex_kubernetes_cluster" "k8s-regional" {  #создание рес�
   service_account_id      = yandex_iam_service_account.myaccount.id #сервисный аккаунт для кластера 
   node_service_account_id = yandex_iam_service_account.myaccount.id #сервисный аккаунт для воркера
   depends_on = [ # механизм терраформа который позволяет указать последовательность задания ресурсов, а именно он задаст все эти права нашему сервисному аккаунту, потому что зависимость в данном случае привычным способом не указать.
-    yandex_resourcemanager_folder_iam_member.k8s-clusters-agent,
-    yandex_resourcemanager_folder_iam_member.vpc-public-admin,
+    yandex_resourcemanager_folder_iam_member.editor,
     yandex_resourcemanager_folder_iam_member.images-puller
   ]
   kms_provider {
