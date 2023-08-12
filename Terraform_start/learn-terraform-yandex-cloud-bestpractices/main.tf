@@ -109,21 +109,23 @@ resource "yandex_iam_service_account" "myaccount" { #создание серве
   description = "K8S regional service account"
 }
 
-resource "yandex_resourcemanager_folder_iam_member" "editor" { #назначение роли
+resource "yandex_resourcemanager_folder_iam_binding" "editor" { #назначение роли 
   # Сервисному аккаунту назначается роль "editor".
   folder_id = local.folder_id #обращение к блоку local
   role      = "editor"
-  member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}"
+  members    = [
+    "serviceAccount:${yandex_iam_service_account.myaccount.id}"
+    ]
 }
 
-resource "yandex_resourcemanager_folder_iam_member" "images-puller" { #назначение роли
+resource "yandex_resourcemanager_folder_iam_binding" "images-puller" { #назначение роли
   # Сервисному аккаунту назначается роль "container-registry.images.puller".
   folder_id = local.folder_id #обращение к блоку local
   role      = "container-registry.images.puller"
-  member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}"
+  members    = [                                                      #пользователь которому будет присвоена роль
+    "serviceAccount:${yandex_iam_service_account.myaccount.id}"
+    ]
 }
-
-
 
 
 resource "yandex_kms_symmetric_key" "kms-key" {
@@ -133,13 +135,13 @@ resource "yandex_kms_symmetric_key" "kms-key" {
   rotation_period   = "8760h" # 1 год.
 }
 
-resource "yandex_resourcemanager_folder_iam_member" "viewer" {
+resource "yandex_resourcemanager_folder_iam_binding" "viewer" {
   folder_id = local.folder_id #обращение к блоку local
   role      = "viewer"
-  member    = "serviceAccount:${yandex_iam_service_account.myaccount.id}"
+  members    = [
+    "serviceAccount:${yandex_iam_service_account.myaccount.id}"
+    ]
 }
-
-
 
 
 resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресурса кубрнетес кластер
@@ -168,8 +170,8 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
   service_account_id      = yandex_iam_service_account.myaccount.id #сервисный аккаунт для кластера 
   node_service_account_id = yandex_iam_service_account.myaccount.id #сервисный аккаунт для воркера
   depends_on = [                                                    # механизм терраформа который позволяет указать последовательность задания ресурсов, а именно он задаст все эти права нашему сервисному аккаунту, потому что зависимость в данном случае привычным способом не указать.
-    yandex_resourcemanager_folder_iam_member.editor,
-    yandex_resourcemanager_folder_iam_member.images-puller
+    yandex_resourcemanager_folder_iam_binding.editor,
+    yandex_resourcemanager_folder_iam_binding.images-puller
   ]
   kms_provider {
     key_id = yandex_kms_symmetric_key.kms-key.id
