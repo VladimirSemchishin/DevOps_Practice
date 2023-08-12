@@ -198,8 +198,8 @@ resource "yandex_kubernetes_node_group" "my_node_group" {
 
     network_interface {
       nat                = true
-      subnet_ids         = [yandex_vpc_subnet.mysubnet-a.id]
-      security_group_ids = [yandex_vpc_security_group.k8s-main-sg.id]
+      subnet_ids         = [yandex_vpc_subnet.mysubnet-a.id] # указал верную существующую подстеть
+      security_group_ids = [yandex_vpc_security_group.k8s-main-sg.id] # продублировал идентификаторы группы безопасности
     }
 
     resources {
