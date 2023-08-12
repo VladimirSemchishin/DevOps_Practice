@@ -146,9 +146,9 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
   network_id              = yandex_vpc_network.mynet.id
   network_policy_provider = "CALICO" # контроллер для управления сетевыми политиками, установив занчение CALITO
   master {
-    version         = local.k8s_version #обращение к блоку local
+    version   = local.k8s_version #обращение к блоку local
     public_ip = true              #даем кластеру внешний ip адресс
-    regional {                          #для кластера требуется задействовать 3 подсети, в каждой из зон доступности
+    regional {                    #для кластера требуется задействовать 3 подсети, в каждой из зон доступности
       region = "ru-central1"
       location {
         zone      = yandex_vpc_subnet.mysubnet-a.zone
