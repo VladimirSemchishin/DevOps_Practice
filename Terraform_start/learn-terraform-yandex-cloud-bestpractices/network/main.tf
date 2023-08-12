@@ -19,7 +19,7 @@ terraform {
 }
 
 provider "yandex" {
-  service_account_key_file = "key.json"
+  service_account_key_file = "key.json" #задаваьб переменными нужно там, где значение будет меняться, файл с логином и поролем меняться не будет. 
   cloud_id                 = var.cloud_id
   folder_id                = var.folder_id
   zone                     = var.default_zone

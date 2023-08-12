@@ -18,3 +18,17 @@ variable "network_name"{
   description = "name of main network"
   type = string
 }
+
+
+#опишем не одну переменную, а набор для подсетей, подойдет тип map
+variable "subnets" {
+  description = "Subnet for k8s"
+
+  type = map(list(object(
+    {
+      name = string
+      zone = string
+      cidr = list(string)
+    }
+  )))
+}
