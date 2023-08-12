@@ -31,4 +31,9 @@ variable "subnets" {
       cidr = list(string)
     }
   )))
+
+  validation {  #здесь проверяется значения параметра j.zone в переменной var.subnets
+    condition = alltrue([for i in keys(var.subnets) : alltrue([for j in lookup(var.subnets, i) : contains(["ru-central1-a", "ru-central1-b", "ru-central1-c"], j.zone)])])
+    error_message = "Error! Zones not supported!"
+  }  
 }
