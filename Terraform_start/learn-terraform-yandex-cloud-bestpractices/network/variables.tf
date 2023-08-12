@@ -37,3 +37,17 @@ variable "subnets" {
     error_message = "Error! Zones not supported!"
   }  
 }
+
+
+variable "while_ips_for_master" { #переменная из security_group.tf
+  type = list(string)
+}
+
+variable "external_static_ips" {  #переменная для определения статических ip, делается по аналогии с подсетями
+  description = "static ips"
+
+  type = map(list(object({
+    name = string
+    zone = string
+  })))
+}

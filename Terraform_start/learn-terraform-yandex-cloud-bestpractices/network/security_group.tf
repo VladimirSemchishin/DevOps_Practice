@@ -1,5 +1,6 @@
 # Файл в который отдельно вынесены группы безопасности
 
+/*
 resource "yandex_vpc_security_group" "k8s-main-sg" { #создание группы безопасности
   name        = "k8s-main-sg"
   description = "Правила группы обеспечивают базовую работоспособность кластера Managed Service for Kubernetes. Примените ее к кластеру Managed Service for Kubernetes и группам узлов."
@@ -42,5 +43,82 @@ resource "yandex_vpc_security_group" "k8s-main-sg" { #создание груп�
     v4_cidr_blocks = ["0.0.0.0/0"]
     from_port      = 0
     to_port        = 65535
+  }
+}
+*/
+
+#Создадим для мастера и для воркера разные группы правил
+
+resource "yandex_vpc_security_group" "internal" { #эта группа существует для связоности мастеров и воркеров
+  name        = "internal"
+  description = "Meneged by terraform."
+  network_id  = yandex_vpc_network.mynet.id
+  
+  labels = {
+    firewall = "yc_internal"
+  }
+
+  ingress {
+    protocol          = "ANY"
+    description       = "self"
+    predefined_target = "self_security_group"
+    from_port         = 0
+    to_port           = 65535
+  }
+  egress {
+    protocol       = "ANY"
+    description    = "self"
+    predefined_target = "self_security_group"
+    from_port      = 0
+    to_port        = 65535
+  }
+}
+
+resource "yandex_vpc_security_group" "k8s_master" { #эта группа существует для мастеров 
+  name        = "k8_master"
+  description = "Meneged by terraform."
+  network_id  = yandex_vpc_network.mynet.id
+  
+  labels = {
+    firewall = "k8_master"
+  }
+
+  ingress {   # для передачи white листов
+    protocol          = "TCP"
+    description       = "access to api k8s"
+    v4_cidr_blocks = var.while_ips_for_master  #обращаемся к переменной которую позже создадим
+    port         = 443
+  }
+  egress {
+    protocol       = "TCP"
+    description    = "access to api k8s from Yandex lb"
+    predefined_target = "loadbalancer_healthchecks"
+    from_port      = 0
+    to_port        = 65535
+  }
+}
+
+resource "yandex_vpc_security_group" "k8s_worker" { #эта группа существует для воркеров (где разрешено вообще все)
+  name        = "k8_worker"
+  description = "Meneged by terraform."
+  network_id  = yandex_vpc_network.mynet.id  
+  
+  labels = {
+    firewall = "k8_worker"
+  }
+
+  ingress {
+    protocol          = "ANY"
+    description       = "any connections"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 65535
+  }
+  egress {
+    protocol       = "ANY"
+    description    = "any connections"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 65535
   }
 }

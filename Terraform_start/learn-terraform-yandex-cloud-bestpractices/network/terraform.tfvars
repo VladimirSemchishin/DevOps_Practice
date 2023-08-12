@@ -45,3 +45,15 @@ subnets = {
   }
   ]
 }
+
+while_ips_for_master = ["0.0.0.0/0"]
+
+external_static_ips = {  #переменная для определения статических ip, делается по аналогии с подсетями
+  
+  ingress_lb = [
+    {
+      name = "ingress_lb_zone_ru_central1_a"
+      zone = "ru-central1-a"
+    }
+  ]
+}
