@@ -113,18 +113,18 @@ resource "yandex_resourcemanager_folder_iam_binding" "editor" { #назначе�
   # Сервисному аккаунту назначается роль "editor".
   folder_id = local.folder_id #обращение к блоку local
   role      = "editor"
-  members    = [                                              #пользователь которому будет присвоена роль
+  members = [ #пользователь которому будет присвоена роль
     "serviceAccount:${yandex_iam_service_account.myaccount.id}"
-    ]
+  ]
 }
 
 resource "yandex_resourcemanager_folder_iam_binding" "images-puller" { #назначение роли
   # Сервисному аккаунту назначается роль "container-registry.images.puller".
   folder_id = local.folder_id #обращение к блоку local
   role      = "container-registry.images.puller"
-  members    = [                                                      #пользователь которому будет присвоена роль
+  members = [ #пользователь которому будет присвоена роль
     "serviceAccount:${yandex_iam_service_account.myaccount.id}"
-    ]
+  ]
 }
 
 
@@ -138,9 +138,9 @@ resource "yandex_kms_symmetric_key" "kms-key" {
 resource "yandex_resourcemanager_folder_iam_binding" "viewer" {
   folder_id = local.folder_id #обращение к блоку local
   role      = "viewer"
-  members    = [
+  members = [
     "serviceAccount:${yandex_iam_service_account.myaccount.id}"
-    ]
+  ]
 }
 
 
@@ -148,7 +148,7 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
   network_id              = yandex_vpc_network.mynet.id
   network_policy_provider = "CALICO" # контроллер для управления сетевыми политиками, установив занчение CALITO
   master {
-    version   = local.k8s_version #обращение к блоку local
+    version   = local.k8s_version #обращение к блоку local, чтобы указать версию мастер ноды
     public_ip = true              #даем кластеру внешний ip адресс
     regional {                    #для кластера требуется задействовать 3 подсети, в каждой из зон доступности
       region = "ru-central1"
@@ -176,4 +176,62 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
   kms_provider {
     key_id = yandex_kms_symmetric_key.kms-key.id
   }
+}
+
+
+
+
+#создание группы узлов в кластере k8s
+resource "yandex_kubernetes_node_group" "my_node_group" {
+  cluster_id  = yandex_kubernetes_cluster.k8s-regional.id #ссылаемся на кластер k8s
+  name        = "worker-a"                                #имя для всей группы (не одной вм)
+  description = "description"
+  version     = local.k8s_version #указывают версию такую как у мастер ноды
+
+  labels = {
+    "key" = "value"
+  }
+
+  instance_template {
+    platform_id = "standard-v1"                                                            #поставим 1 вместо 2 чтобы это не значило
+    name        = "${yandex_kubernetes_node_group.my_node_group.name}-{instance.short_id}" #задается имя конкретного instace (вм). Поскольку включен futo_scaling ноды будут создаться автоматически, при повышении нагрузки, а так же уничтожаться. По этому фиксированное значение не подойдет. В соотв с докой сделаем через переменную уникальной. В данном случае отметим уникальный id в рамках группы и id группы
+
+    network_interface {
+      nat                = true
+      subnet_ids         = [yandex_vpc_subnet.mysubnet-a.id]
+      security_group_ids = [yandex_vpc_security_group.k8s-main-sg.id]
+    }
+
+    resources {
+      memory = 2
+      cores  = 2
+    }
+
+    boot_disk {
+      type = "network-hdd"
+      size = 32
+    }
+
+    scheduling_policy {
+      preemptible = false
+    }
+
+
+  }
+
+  scale_policy {
+    auto_scale {
+      min     = 1
+      max     = 4
+      initial = 3
+    }
+  }
+
+  allocation_policy {
+    location {
+      zone = "ru-central1-a"
+    }
+  }
+
+
 }
