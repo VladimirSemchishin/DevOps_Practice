@@ -113,7 +113,7 @@ resource "yandex_resourcemanager_folder_iam_binding" "editor" { #назначе�
   # Сервисному аккаунту назначается роль "editor".
   folder_id = local.folder_id #обращение к блоку local
   role      = "editor"
-  members    = [
+  members    = [                                              #пользователь которому будет присвоена роль
     "serviceAccount:${yandex_iam_service_account.myaccount.id}"
     ]
 }
