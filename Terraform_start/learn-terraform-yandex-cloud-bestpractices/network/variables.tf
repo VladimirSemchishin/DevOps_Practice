@@ -1,25 +1,28 @@
 # Это файл с параметрами (переменными), они здесь объявляются
 #укажем что хотим создать 4 переменных
 
-variable "cloud_id"{
+#==================== main ====================
+variable "cloud_id" {
   description = "cloud id"
-  type = string
+  type        = string
 }
-variable "folder_id"{
+variable "folder_id" {
   description = "folder id"
-  type = string
+  type        = string
 }
-variable "default_zone"{
+variable "default_zone" {
   description = "default zone"
-  type = string
-  default = "ru-central1-a"
+  type        = string
+  default     = "ru-central1-a"
 }
-variable "network_name"{
+
+#==================== network ====================
+variable "network_name" {
   description = "name of main network"
-  type = string
+  type        = string
 }
 
-
+#==================== subnets ====================
 #опишем не одну переменную, а набор для подсетей, подойдет тип map
 variable "subnets" {
   description = "Subnet for k8s"
@@ -32,18 +35,14 @@ variable "subnets" {
     }
   )))
 
-  validation {  #здесь проверяется значения параметра j.zone в переменной var.subnets
-    condition = alltrue([for i in keys(var.subnets) : alltrue([for j in lookup(var.subnets, i) : contains(["ru-central1-a", "ru-central1-b", "ru-central1-c"], j.zone)])])
+  validation { #здесь проверяется значения параметра j.zone в переменной var.subnets
+    condition     = alltrue([for i in keys(var.subnets) : alltrue([for j in lookup(var.subnets, i) : contains(["ru-central1-a", "ru-central1-b", "ru-central1-c"], j.zone)])])
     error_message = "Error! Zones not supported!"
-  }  
+  }
 }
 
-
-variable "while_ips_for_master" { #переменная из security_group.tf
-  type = list(string)
-}
-
-variable "external_static_ips" {  #переменная для определения статических ip, делается по аналогии с подсетями
+#==================== external-static_ip ====================
+variable "external_static_ips" { #переменная для определения статических ip, делается по аналогии с подсетями
   description = "static ips"
 
   type = map(list(object({
@@ -51,3 +50,9 @@ variable "external_static_ips" {  #переменная для определе�
     zone = string
   })))
 }
+
+#==================== security_group ====================
+variable "white_ips_for_master" { #переменная из security_group.tf
+  type = list(string)
+}
+
