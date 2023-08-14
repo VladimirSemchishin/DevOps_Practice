@@ -73,3 +73,10 @@ variable "master_region" {
   type = string
   default = "null"
 }
+
+#==================== node_groups ====================
+variable "node_groups" {
+  description = "paraneters of Kubernetes node groups"
+  type = string
+  default = {}
+}
