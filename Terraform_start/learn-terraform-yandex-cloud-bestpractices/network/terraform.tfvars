@@ -21,7 +21,7 @@ subnets = {
       cidr = ["10.0.1.0/28"]
     },
     {
-      name = "k8s_master_zone_a"
+      name = "k8s_master_zone_b"
       zone = "ru-central1-b"
       cidr = ["10.0.2.0/28"]
     },
@@ -33,21 +33,21 @@ subnets = {
   ],
   "k8s_workers" = [
     {
-      name = "k8s_master_zone_a"
+      name = "k8s_worker_zone_a"
       zone = "ru-central1-a"
       cidr = ["10.0.4.0/28"]
     },
     {
-      name = "k8s_master_zone_b"
+      name = "k8s_worker_zone_b"
       zone = "ru-central1-b"
       cidr = ["10.0.5.0/28"]
     },
     {
-      name = "k8s_master_zone_c"
+      name = "k8s_worker_zone_c"
       zone = "ru-central1-c"
       cidr = ["10.0.6.0/28"]
     }
-  ]
+  ],
 }
 
 #==================== external-static_ip ====================

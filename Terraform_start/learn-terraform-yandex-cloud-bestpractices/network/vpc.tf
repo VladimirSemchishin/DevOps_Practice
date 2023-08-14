@@ -13,7 +13,7 @@ resource "yandex_vpc_subnet" "mysubnet-main" { #подсеть
   #при помощи этого одного блока описаны 6 подсетей
 
   for_each = { #используем список fot_each где мы подставляем список в local.subnet_array и по уникальному имени выставляем значение в ресурсе, повторяем пока список не закончится
-    for k, v in local.subnet_array : "${v.name}" => v
+    for v in local.subnet_array : "${v.name}" => v
   }
 
   network_id = yandex_vpc_network.network-main.id
