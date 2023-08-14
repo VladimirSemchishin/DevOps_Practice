@@ -28,8 +28,8 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
       dynamic "location" { #этот блок работает следующим образом, создается блок dynamic c указанием метки динамического блока, она указывает какой вид вложенного блока необходимо сгенерировать (в данном примере location, но можно и ingress ), после чего создается наполенение - content, в нем указываются элементы указанного вида вложенного блока, через [метка].value указывается что нужно вставить элемент переданного списка. Список передается мета аргументом for_each, из него будут браться элементы списка.
         for_each = local.network_output.k8s_master_subnet_info
         content {
-          zone = location.value["zone"]
-          sybnet_id = location.value["subnet_id"]
+          zone = location.value["zone"] # передать значение этому атрибуту у которого есть указатель zone
+          subnet_id = location.value["subnet_id"]  # передать значение этому атрибуту у которого есть указатель zsubnet_id
         }
       }
 
