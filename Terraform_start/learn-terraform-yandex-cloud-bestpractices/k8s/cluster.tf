@@ -1,5 +1,5 @@
 resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресурса кубрнетес кластер
-  network_id              = data.yandex_vpc_network.network.name.id
+  network_id              = data.yandex_vpc_network.network.name.id # здесь я ссылаюсь на внешний источник, так можно сделать, потому что сначала он был определен через data.tf как внешний источник
   network_policy_provider = var.network_policy_provider # контроллер для управления сетевыми политиками, установив занчение CALITO
   master {
     version   = local.k8s_version #обращение к блоку local, чтобы указать версию мастер ноды
