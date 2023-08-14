@@ -6,3 +6,8 @@ cloud_id = "b1gm3hna85fgcv7mif87"
 folder_id = "b1gll7vtke087ibf3i59"
 
 # default_zone = #указывать не будем, тк как есть дефолтное, но если что его можно здесь переопределить. Она так же доступна (с деф знач.) для исп в других файлах как и остальные переменные
+
+#==================== service_account ====================
+service_account_name = "myaccount"
+
+kms_provider_key_name = "kms-key"

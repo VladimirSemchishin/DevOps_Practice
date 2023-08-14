@@ -15,3 +15,16 @@ variable "default_zone" {
   type        = string
   default     = "ru-central1-a"
 }
+
+#==================== service_account ====================
+ variable "service_account_name" {      #ранее имя было задано через locals, теперь здаем его через перменную
+   description = "Name of service account"
+   type = string
+   default = "null"
+ }
+
+variable "kms_provider_key_name" {    #еще чтобы передать ключ шифрования нужна переменная и для него
+  description = "KMS key name"
+  type = string
+  default = "null"
+}
