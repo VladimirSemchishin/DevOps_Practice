@@ -30,9 +30,9 @@ output "sg_k8s_worker" {
 #подсети задаются циклом, по этому необходимо прописать условие
 
 output "k8s_master_subnet_info" {
-  value = [for k, v in var.var.subnets["k8s_masters"] : zipmap(["subnet_id", "zone"], [yandex_vpc_subnet.mysubnet-main[v.name].id, yandex_vpc_subnet.mysubnet-main[v.name].zone])]
+  value = [for k, v in var.subnets["k8s_masters"] : zipmap(["subnet_id", "zone"], [yandex_vpc_subnet.mysubnet-main[v.name].id, yandex_vpc_subnet.mysubnet-main[v.name].zone])]
 }
 
 output "k8s_worker_subnet_info" {
-  value = [for k, v in var.var.subnets["k8s_worker"] : zipmap(["subnet_id", "zone"], [yandex_vpc_subnet.mysubnet-main[v.name].id, yandex_vpc_subnet.mysubnet-main[v.name].zone])]
+  value = [for k, v in var.subnets["k8s_worker"] : zipmap(["subnet_id", "zone"], [yandex_vpc_subnet.mysubnet-main[v.name].id, yandex_vpc_subnet.mysubnet-main[v.name].zone])]
 }
