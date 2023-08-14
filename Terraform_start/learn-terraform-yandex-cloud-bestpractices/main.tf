@@ -108,7 +108,8 @@ resource "yandex_vpc_security_group" "k8s-main-sg" { #создание груп�
 }
 */
 
-
+#Перенесено в k8s/sevice_account.tf
+/*
 resource "yandex_iam_service_account" "myaccount" { #создание сервесного аккаунта и назначение ролей необходимых для работы кластера. Можно не создавать несколько сервисных акк, но безопаснее если на каждом сервисе будет свой.
   name        = local.sa_name                       #обращение к блоку local
   description = "K8S regional service account"
@@ -147,8 +148,11 @@ resource "yandex_resourcemanager_folder_iam_binding" "viewer" {
     "serviceAccount:${yandex_iam_service_account.myaccount.id}"
   ]
 }
+*/
 
 
+#Перенесено в k8s/cluster.tf
+/*
 resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресурса кубрнетес кластер
   network_id              = yandex_vpc_network.mynet.id
   network_policy_provider = "CALICO" # контроллер для управления сетевыми политиками, установив занчение CALITO
@@ -182,10 +186,11 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
     key_id = yandex_kms_symmetric_key.kms-key.id
   }
 }
+*/
 
 
-
-
+#Перенесено в k8s/node_group.tf
+/*
 #создание группы узлов в кластере k8s
 resource "yandex_kubernetes_node_group" "my_node_group_a" {
   cluster_id  = yandex_kubernetes_cluster.k8s-regional.id #ссылаемся на кластер k8s
@@ -341,3 +346,4 @@ resource "yandex_kubernetes_node_group" "my_node_group_c" {
     }
   }
 }
+*/
