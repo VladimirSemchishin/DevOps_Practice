@@ -25,7 +25,7 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
         subnet_id = yandex_vpc_subnet.mysubnet-c.id
       }
       */
-      dynamic "location" {
+      dynamic "location" { #этот блок работает следующим образом, создается блок dynamic c указанием метки динамического блока, она указывает какой вид вложенного блока необходимо сгенерировать (в данном примере location, но можно и ingress ), после чего создается наполенение - content, в нем указываются элементы указанного вида вложенного блока, через [метка].value указывается что нужно вставить элемент переданного списка. Список передается мета аргументом for_each, из него будут браться элементы списка.
         for_each = local.network_output.k8s_master_subnet_info
         content {
           zone = location.value["zone"]
@@ -37,7 +37,7 @@ resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресу
     #security_group_ids = [yandex_vpc_security_group.k8s-main-sg.id]
     security_group_ids = [local.network_output.sg_internal, local.network_output.sg_k8s_master]  
   }
-  
+
   kms_provider {
     key_id = yandex_kms_symmetric_key.kms-key.id
   }
