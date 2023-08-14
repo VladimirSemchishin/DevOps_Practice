@@ -11,3 +11,14 @@ folder_id = "b1gll7vtke087ibf3i59"
 service_account_name = "myaccount"
 
 kms_provider_key_name = "kms-key"
+
+#==================== cluster ====================
+cluster_name = "k8s_cluster"
+
+# network_policy_provider = "" задано дефолтным значением
+
+master_version = "1.27"
+
+# master_publick_ip = "" задно дефолтным значением
+
+master_region = "ru-central1"
