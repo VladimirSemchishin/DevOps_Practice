@@ -1,11 +1,11 @@
 resource "yandex_kubernetes_cluster" "k8s-regional" { #создание ресурса кубрнетес кластер
-  network_id              = yandex_vpc_network.mynet.id
+  network_id              = data.yandex_vpc_network.network.name.id
   network_policy_provider = var.network_policy_provider # контроллер для управления сетевыми политиками, установив занчение CALITO
   master {
     version   = local.k8s_version #обращение к блоку local, чтобы указать версию мастер ноды
     public_ip = var.master_publick_ip              #даем кластеру внешний ip адресс
     regional {                    #для кластера требуется задействовать 3 подсети, в каждой из зон доступности
-      region = "ru-central1"
+      region = var.master_region
       location {
         zone      = yandex_vpc_subnet.mysubnet-a.zone
         subnet_id = yandex_vpc_subnet.mysubnet-a.id

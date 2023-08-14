@@ -16,6 +16,20 @@ variable "default_zone" {
   default     = "ru-central1-a"
 }
 
+#==================== terraform_remote_state ====================
+variable "network_state_key" {
+  description = "The key of state for the network"
+  type = string
+  default = "null"
+}
+
+variable "network_backet_name" {
+  description = "The name of bucket for the network"
+  type = string
+  default = "null"
+}
+
+
 #==================== service_account ====================
  variable "service_account_name" {      #ранее имя было задано через locals, теперь здаем его через перменную
    description = "Name of service account"
