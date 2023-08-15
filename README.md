@@ -15,7 +15,7 @@
 
 
 ## Terraform
-Создание мультизонального кластера K8s через провайдера YandexCloud в соответсвии с best practices. Все значения которые могут изменяться описаны переменными, если есть части повторяющегося кода, они были переписаны с использование функций terraforn для работы с списками (for_each, lookup и flatten). Хранения файла состояния реализовано через хранилище s3
+Создание мультизонального кластера K8s через провайдера YandexCloud в соответсвии с best practices. Все значения которые могут изменяться описаны переменными, если есть части повторяющегося кода, они были переписаны с использование функций terraforn для работы с списками (for_each, lookup и flatten). Хранения файла состояния реализовано через хранилище s3. [Директория проекта](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/Terraform_start/learn-terraform-yandex-cloud-bestpractices "Ссылка на директорию этого проекта")
 Реализовано отдельное описание частей:
 
 -- network:  
@@ -40,4 +40,4 @@
 * terraform.tfvars   - значение пременных
 * variables.tf       - объявление переменных
 
-[Директория проекта](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/Terraform_start/learn-terraform-yandex-cloud-bestpractices "Ссылка на директорию этого проекта")
+
