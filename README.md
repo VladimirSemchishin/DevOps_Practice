@@ -39,4 +39,5 @@
 * storage.key        - лог и пороль сервисного акк
 * terraform.tfvars   - значение пременных
 * variables.tf       - объявление переменных
+
 [Директория проекта](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/Terraform_start/learn-terraform-yandex-cloud-bestpractices "Ссылка на директорию этого проекта")
