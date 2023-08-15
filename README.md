@@ -1,6 +1,7 @@
 # DevOps_Practice
 Здесь краткие записи итогов минипроектов моего обучения Docker и Docker Compose. 
 
+##Docker
 
 ### ToDo.
 Есть проект - таск менеджер todo. Сначала я создал Dockerfile, который создает контейнер основе образа node:18-alpine, делает рабочей директорий /app, переносит все файлы из текущей директории, запускает файл src/index.js и открывает 3000 порт. Вот [Dockerfile1](https://github.com/VladimirSemchishin/MyDocker/blob/main/Dockerfile1 "Ссылка на Dockerfile1")
@@ -11,3 +12,6 @@
 
 ### Шифровщик теста.
 Суть проекта заключается в том чтобы пройтись по каждой из тем на практике: Слои, Multi-stage, Параллелизм, Bild targets,Mounts, Bild arguments, экспорт файлов бинарников и Test. Вот [Dockerfile2](https://github.com/VladimirSemchishin/MyDocker/blob/main/Dockerfile2 "Ссылка на Dockerfile2")
+
+
+##Terraform
