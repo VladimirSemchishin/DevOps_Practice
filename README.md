@@ -1,7 +1,7 @@
 # DevOps_Practice
 Здесь краткие записи итогов минипроектов моего обучения Docker и Docker Compose. 
 
-##Docker
+## Docker
 
 ### ToDo.
 Есть проект - таск менеджер todo. Сначала я создал Dockerfile, который создает контейнер основе образа node:18-alpine, делает рабочей директорий /app, переносит все файлы из текущей директории, запускает файл src/index.js и открывает 3000 порт. Вот [Dockerfile1](https://github.com/VladimirSemchishin/MyDocker/blob/main/Dockerfile1 "Ссылка на Dockerfile1")
@@ -14,12 +14,12 @@
 Суть проекта заключается в том чтобы пройтись по каждой из тем на практике: Слои, Multi-stage, Параллелизм, Bild targets,Mounts, Bild arguments, экспорт файлов бинарников и Test. Вот [Dockerfile2](https://github.com/VladimirSemchishin/MyDocker/blob/main/Dockerfile2 "Ссылка на Dockerfile2")
 
 
-##Terraform
+## Terraform
 Создание мультизонального кластера K8s через провайдера YandexCloud в соответсвии с best practices. Все значения которые могут изменяться описаны переменными, если есть части повторяющегося кода, они были переписаны с использование функций terraforn для работы с списками (for_each, lookup и flatten). Хранения файла состояния реализовано через хранилище s3
 Реализовано отдельное описание частей:
 -- network:  
-* locals.tf          - локальные переменные
-* main.tf            - инициализация и подключение провайдера
++ locals.tf          - локальные переменные
+- main.tf            - инициализация и подключение провайдера
 * outputs.tf         - вывод network_id, sg_internal, sg_k8s_master, sg_k8s_worker
             * security_group.tf - права для internal (связуещего мастеров и воркеров), мастеров и воркеров
             * static-ip.tf      - определение статических ip, в инфраструктуре он один, но через цикл реализована возможность использования большего количесва.
