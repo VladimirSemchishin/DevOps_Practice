@@ -1,5 +1,5 @@
 resource "yandex_iam_service_account" "myaccount" { #создание сервесного аккаунта и назначение ролей необходимых для работы кластера. Можно не создавать несколько сервисных акк, но безопаснее если на каждом сервисе будет свой.
-  name        = var.service_account_name                      #обращение к блоку local
+  name        = var.service_account_name            #обращение к блоку local
   description = "K8S regional service account"
 }
 
