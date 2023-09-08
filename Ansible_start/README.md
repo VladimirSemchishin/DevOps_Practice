@@ -236,4 +236,57 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ![image-20230908191543362](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908191543362.png)
 
 Так будет выглядеть playbook6.yml
-![image-20230908191405595](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908191405595.png)
+![image-20230908224741282](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908224741282.png)
+
+## Создание ролей Roles
+
+Необходимо создать попку `roles`  (`mkdir roles`) после чего выполнить команду:
+`$ansible-gelaxy init deploy_apache_web` 
+(где deploy_apache_web это название роли которое придумывается самостоятельно)
+Создастя директория с этим именем, структура автоматически создается следующая:
+![image-20230908225410609](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908225410609.png)
+
+Созданные файлы изначально пустые
+
+- **defaults**/main.yml - переменные по умолчанию для роли. Эти переменные имеют самый низкий приоритет среди всех доступных переменных и могут быть легко переопределены любой другой переменной, включая переменные инвентаризации.
+- **files**/main.yml -файлы, которые роль развертывает.
+- **handlers**/main.yml - обработчики, которые могут использоваться как в рамках этой роли, так и вне ее.
+- **meta**/main.yml - метаданные для роли, включая зависимости от роли и необязательные метаданные Galaxy, такие как поддерживаемые платформы.
+- **tasks**/main.yml - основной список задач, выполняемых ролью.
+- **templates**/main.yml - шаблоны, которые развертывает роль.
+- **tests** - для пробного inventory
+- **vars**/main.yml - другие переменные для роли
+
+Суть заключается в том, чтобы раскидать уже созданные playbook6.yml по этим папкам (некоторые не будут использоваться)
+
+Сейчас playbook6.yml выглядит следующим образом:
+![image-20230908230738485](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230738485.png)
+![image-20230908230807171](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230807171.png)
+![image-20230908230841537](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230841537.png)
+![image-20230908230909357](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230909357.png)
+![image-20230908230949960](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230949960.png)
+![image-20230908231015900](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908231015900.png)
+
+Переносим сначала файлы которые просто копируются (file1-4), затем генерируемые файлы (index.j2)
+![image-20230908232925617](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908232925617.png)
+
+Следующим шагом переносим в `roles/deploy_apache_web/defaults/main.yml` переменные, поскольку по дефолту ресурсный файл будет определен, нужно перенести только одну переменную.
+
+![image-20230908232712747](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908232712747.png) 
+
+Затем переноси hendlers
+![image-20230908233229597](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908233229597.png)
+
+Далее переносим tasks
+Не забывая поправить (убрать `source_folder` из блока `temlates` потому что по дефолту обращаться будет к директории `temlates`, а копировать файлы будет из директории `files`)
+
+![image-20230908235436934](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908235436934.png)
+
+И чтобы запустить все это необходим playbook7.yml (то что осталось после раскидывания от playbook6.yml с указанием роли)
+
+![image-20230908234557032](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908234557032.png)
+Но еще укажу условие при котором будет запускаться эта роль, если ansible_system это линукс
+![image-20230908234921873](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908234921873.png)
+
+В общем виде все действия были проделаны так:
+![image-20230908235732408](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908235732408.png)
