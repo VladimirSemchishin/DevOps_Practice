@@ -1,0 +1,46 @@
+---
+- name: Loops Playbook
+  hosts: target3
+  become: yes
+
+  tasks:
+    
+  - name: Say Hellp to ALL
+    debug: msg="Hellp {{ item }} "
+    loop: 
+      - "Vasia"
+      - "Petya"
+      - "Galya"
+      - "Vova"
+
+  - name: Loop Until example
+    shell: echo -n Z >> myfile.txt && cat myfile.txt
+    register: output
+    delay: 2
+    retries: 10 
+    until: output.stdout.find("ZZZZ") == false
+  
+  - name: Print Final Output
+    debug:
+      var: output.stdout
+
+  - block: #====For RedHat====
+    - name: Install many packeged
+      yum: name={{ item }} state=installed
+      loop: 
+        - tree
+
+    when: ansible_os_family == "RedHat" 
+
+  - block: #====For Debian====
+    - name: Install many packeged
+      apt: name={{ item }} state=latest
+      loop:
+        - tree
+
+    when: ansible_os_family == "Debian"
+
+
+
+
+...
