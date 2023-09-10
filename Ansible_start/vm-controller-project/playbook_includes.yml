@@ -1,0 +1,18 @@
+---
+- name: My Syper Playbook
+  hosts: all
+  become: yes
+  
+  vars:
+    mytext: "Privet ot ADV-IT"
+    
+  tasks:
+  - name: Ping test
+    ping:
+    
+  - name: Create Folders
+    include: create_folders.yml
+  
+  - name: Create Files
+    include: create_files.yml mytext="Hello from Vancouver BC"
+...

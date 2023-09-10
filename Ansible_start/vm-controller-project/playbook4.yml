@@ -1,0 +1,42 @@
+---
+- name: My playbook for practice
+  hosts: all
+  become: yes
+
+  vars:
+   message1: Privet
+   message2: World
+   secret  : IOJOKFKSDJKSD*&(*SDNJSJD
+
+  tasks:
+  - name: Print Secret variable
+    debug: 
+     var: secret
+
+  - debug:
+      msg: "secretnoe slovo: {{ secret }}"
+
+  - debug:
+      msg: "Vladelex Etogo Servera -->{{ owner }}<--"
+
+  - debug:
+      msg: "{{message1}} {{message2}} from {{owner}}"
+
+
+  - set_fact: full_message="{{message1}} {{message2}} from {{owner}}"
+
+  - debug:
+      var: full_message
+
+  - debug:
+      var: ansible_distribution
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results
+  
+  - debug:
+      var: results.stdout
+...
