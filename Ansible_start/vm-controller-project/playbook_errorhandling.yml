@@ -1,0 +1,24 @@
+---
+- name: Ansible Lesson 19
+  hosts: all
+  any_errors_fatal: true
+  become: yes
+
+  tasks:
+  - name: Task 1
+    yum: name=treeeeeeee state=latest
+#    ignore_errors: yes   
+
+  - name: Task 2
+    shell: cat /home/target/myfile.txt
+    register: results
+#    failed_when: results.rc == 0
+#    failed_when: "'World' in results.stdout" 
+
+
+#  - debug:
+#      var: results
+
+  - name: Task 3
+    shell: echo Privet Mir!!!
+...
