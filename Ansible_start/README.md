@@ -362,5 +362,36 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 
 
+## Перехват и Контроль Ошибок Error Handling
 
+Если есть task выполнение которого не важно но важно чтобы поледующие выполнились, можно указать, что в случае ошибки нужно просто игнорировать его.
+Есть playbook_errorhndling.yml
+В первом таске указано, что нужно игнорировать ошибки через `ignore_errors: yes`
 
+![image-20230910153023510](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910153023510.png)
+
+Запустим (таск 1 проигнорирован)
+
+![image-20230910153519672](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910153519672.png)
+
+Можно приостановить выполнение тасков, если при исполнении одного из них в параметрах значение переменной прило определенное значение
+Для этого нужен параметр `failed_when: " 'значение' in results.stdout "` 
+где  в одинарных ковычках искомое значение при котором исполнение таска будет ошибкой
+`results.stdout` - это указание переменной в которой искать значение
+
+![image-20230910154244357](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910154244357.png)
+
+Результат (выполнение второго таска будет ошибкой, тк в значении переменной будет World)
+
+![image-20230910154216959](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910154216959.png)
+
+Можно выполнить поиск не только по тексту но и по значению (rc - return code - код возврата 0 true 1 false)
+![image-20230910154600823](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910154600823.png)
+
+Можно приостановить выполнение всех после первой же ошибки (таск попытается выполнить задачу на всех хостах, но послеующие таски выполнять не будет)
+
+![image-20230910155806777](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910155806777.png)
+
+Результат.
+
+![image-20230910155832558](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910155832558.png)
