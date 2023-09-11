@@ -105,7 +105,7 @@ Ansible создает две группы по умолчанию: allи ungrou
 Начинается с --- заканчивается ...
 Можно писать так как на фоото, главное соблюдать пробелы
 
-![image-20230905120844355](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905120844355.png)
+![image-20230905120844355](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906165829834.png)
 
 ## Переменные в group_vars
 
