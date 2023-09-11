@@ -183,6 +183,7 @@ become - запускать от имени администратора (в к�
 Применение playbook5.yml
 
 ![image-20230906163120348](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906163120348.png)
+
 ![image-20230906163137843](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906163137843.png)
 
 Видно что when используется не удобно (постоянно переписывается), значит те таски в которых он есть нужно объединить. А объединяются они через блок `block:` так же важно записывать `when:` в конце блока.
@@ -192,6 +193,7 @@ become - запускать от имени администратора (в к�
 Применение playbook5.yml
 
 ![image-20230906165735046](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906165735046.png)
+
 ![image-20230906165829834](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image)/image-20230906165829834.png)
 
 ## Циклы - Loop, With_Items, Until, With_fileglob
@@ -208,6 +210,7 @@ become - запускать от имени администратора (в к�
 Запуск playbookloop.yml
 
 ![image-20230908162333344](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908162333344.png)
+
 ![image-20230908162355316](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908162355316.png)
 
 ### Копирование файлов через цикл и улучшение перезагрузки сайтов после изменений
@@ -218,9 +221,13 @@ become - запускать от имени администратора (в к�
 Для перечисления использовал item, который принимает значения перечисленных файлов в папке, адрес до которой присвоен переменной source_folder
 
 ![image-20230908175129320](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175129320.png)
+
 ![image-20230908175206088](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175206088.png)
+
 ![image-20230908175234192](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175234192.png)
+
 ![image-20230908175400735](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175400735.png)
+
 ![image-20230908175424431](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175424431.png)
 
 Копирование другим способом.
@@ -272,10 +279,15 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 Сейчас playbook6.yml выглядит следующим образом:
 
 ![image-20230908230738485](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230738485.png)
+
 ![image-20230908230807171](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230807171.png)
+
 ![image-20230908230841537](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230841537.png)
+
 ![image-20230908230909357](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230909357.png)
+
 ![image-20230908230949960](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230949960.png)
+
 ![image-20230908231015900](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908231015900.png)
 
 Переносим сначала файлы которые просто копируются (file1-4), затем генерируемые файлы (index.j2)
@@ -359,7 +371,9 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 Обратиться можно и к мастеру, просто обращаться к нему нужно по зарезервированному ip `127.0.0.1`
 
 ![image-20230909150013335](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909150013335.png)
+
 ![image-20230909150038428](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909150038428.png)
+
 ![image-20230909152741705](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909152741705.png)
 
 Последние 2 блока это перезапуск воркеров,
