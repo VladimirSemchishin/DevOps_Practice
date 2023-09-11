@@ -395,3 +395,51 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 Результат.
 
 ![image-20230910155832558](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910155832558.png)
+
+## Хранение Секретов Ansible-Vault
+
+Создать файл который будет закрыт паролем (зашифрованный)
+Для этого используется `$ansible-voult create file.txt`![image-20230911135438152](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911135438152.png)
+Нужно будет ввести пароль
+Чтобы просмотреть этот файл  `$ansible-voult view file.txt`
+![image-20230911135515494](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911135515494.png)
+Если обычным способом попробовать, что выдаст шифр
+![image-20230911135554143](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911135554143.png)
+Для nano аналогично
+
+Чтобы изменить  `$ansible-voult edit file.txt`
+Чтобы поменять пороль `$ansible-voult rekey file.txt`
+
+Допустим есть файл `playbook_vault.yml`
+![image-20230911140949406](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911140949406.png)
+Его можно польностью зашифровать `$ansible-voult encrypt file.txt`
+![image-20230911141213515](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911141213515.png)
+Все функции при это playbook сохранил, его можно сохранить, но теперь просмотреть и изменить без пороля его нельзя.
+Чтобы вернуть файл в незашифрованное состояние: `$ansible-voult decrypt file.txt`  (он станет обычным файлом)
+
+Запуск зашифрованных файлов `ansible-playbook playboook_vault.yml --ask-vault-pass` Изза последнего флага он спросит пароль и если его ввести запустится выполнение плейбука
+![image-20230911142050987](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911142050987.png)
+
+Указать пароль для decrypt можно через файл: `ansible-playbook playboook_vault.yml --vault-password-file pass.txt`
+![image-20230911142402572](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911142402572.png)
+
+Чтобы не шифровать весь файл, можно зашифровать только строку с паролем. `Для этого $ansible-vault encrypt_string`
+![image-20230911143336757](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911143336757.png)
+
+И вставить зашифрованный вариант пароля в playbook
+![image-20230911143424700](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911143424700.png)
+
+Тоже создание пароля но в одну строку: `$echo -n "password" | ansible-vault encrypt_string`
+
+![image-20230911143809083](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911143809083.png)
+
+Если применяется зашифрованная переменная, то при запуске плайбука ее нужно расшифровать, так же как если бы был зашифрован весь файл (запросить вопрос пароля): `$ansible-playbook playboook_vault.yml --ask-vault-pass`
+Так же если используется шифрование нескольких переменных, то нужно чтобы у них был один и тот же пароль.
+![image-20230911144345116](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911144345116.png)
+
+Иначе (переменная так и запишится шифром и выдаст ошибку)
+![image-20230911144116794](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911144116794.png)
+
+Кратко.
+
+![image-20230911144420850](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911144420850.png)
