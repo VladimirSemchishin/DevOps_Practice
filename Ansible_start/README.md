@@ -113,15 +113,15 @@ Ansible создает две группы по умолчанию: allи ungrou
 
 Было
 
-![image-20230905142941020](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905142941020.png)
+![image-20230905142941020](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905142941020.png)
 
 Стало
 
-![image-20230905143047879](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905143047879.png)
+![image-20230905143047879](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905143047879.png)
 
 А струкутра файлов, такова, что в папке  group_vars, хранятся файлы с переменными для host1 и host2 соответсвенно.
 
-![image-20230905143121167](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905143121167.png)
+![image-20230905143121167](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905143121167.png)
 
 Все переменные подтянутся и соединение по ssh будет как и прежде работать. Это в первую очередь полежно для менеджмента. 
 
@@ -133,10 +133,10 @@ name - указвает имя
 hosts - группа или конкретный хост к которому обращаться
 become - запускать от имени администратора (в командной строке это было -b)
 
-![image-20230905145030254](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905145030254.png)
+![image-20230905145030254](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905145030254.png)
 
 Чтобы его выполнить: `$ansible-playbook playbook1.yml`
-![image-20230905150128404](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905150128404.png)
+![image-20230905150128404](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905150128404.png)
 
 ### playbook2.yml 
 
@@ -144,10 +144,10 @@ become - запускать от имени администратора (в к�
 Все ыполняемые действия разделяются на tasks (задания), каждое задание начинается с -
 Прописываются модули (-m) и их аргументы (-a), в данном случае модуль yum, а его атрибуты name и state. По аналогии и с запуском (enable указывает что сервис должен загружаться при загрузке)
 
-![image-20230905151607280](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905151607280.png)
+![image-20230905151607280](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905151607280.png)
 
 Запуск, Ansivble выведет какие шаги он сделал (tasks) с подписью (name) 
-![image-20230905151705898](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905151705898.png)
+![image-20230905151705898](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905151705898.png)
 
 ### playbook3.yml
 
@@ -156,7 +156,7 @@ become - запускать от имени администратора (в к�
 Блок `handlers:` описывает что нужно сделать, если на его ключевое слово приходит сигнал о выполнении этой задачи.
 В данном примере перезапуск произойдет только если изменятся файлы сайта (скопированное на ВМ в /var/www/html/)
 
-![image-20230905171227572](/home/smvn/snap/typora/82/.config/Typora/typora-user-images/image-20230905171227572.png)
+![image-20230905171227572](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905171227572.png)
 
 ## Переменные - Debug Set_fact, Register
 
@@ -164,28 +164,28 @@ become - запускать от имени администратора (в к�
 Так же есть уже созданные переенные (показывающие конфигурацию ВМ), для их отображения: `ansible all -m setup` в выводе этой команды все переменные, которые можно использовать для вывода в своих playbook. Но вывод переменной может быть большим, по этому можно обращаться к ее сущностям (переменная может быть списком) через точку (`results.stdout`)
 В случае когда выполняется команда (в примере uptime) она не будет автоматом выводится (ее результат), по этому необходимо использовать `register:` это ключевое слово для создания переменной из выходных задач ansible (по этому как раз она и записывается ровно под подулем `shell:`)
 
-![image-20230906151546140](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906151546140.png)
+![image-20230906151546140](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906151546140.png)
 
 Исполнение playbook4.yml
-![image-20230906151704371](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906151704371.png)
+![image-20230906151704371](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906151704371.png)
 
-![image-20230906151747394](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906151747394.png)
+![image-20230906151747394](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906151747394.png)
 
 ## Блоки и Условия - Block-When 
 
 Например, если 3 сервера на котором нужно развернуть сайт, один из них ubuntu два остальных centos. Для centos команда yum, а для ubuntu apt, по этому необходимо задать условие, когда ansible_os_family (о этой переменной я узнал из `-m setup`) равна redhat нужно использовать yum, когда  debian нужно apt ( так же атрибуты `name=httpd` и `name=apache2` соответсвенно)
-![image-20230906162940052](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906162940052.png)
+![image-20230906162940052](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906162940052.png)
 
 Применение playbook5.yml
-![image-20230906163120348](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906163120348.png)
-![image-20230906163137843](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906163137843.png)
+![image-20230906163120348](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906163120348.png)
+![image-20230906163137843](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906163137843.png)
 
 Видно что when используется не удобно (постоянно переписывается), значит те таски в которых он есть нужно объединить. А объединяются они через блок `block:` так же важно записывать `when:` в конце блока.
-![image-20230906165640879](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906165640879.png)
+![image-20230906165640879](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906165640879.png)
 
 Применение playbook5.yml
-![image-20230906165735046](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906165735046.png)
-![image-20230906165829834](/home/smvn/snap/typora/84/.config/Typora/typora-user-images/image-20230906165829834.png)
+![image-20230906165735046](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906165735046.png)
+![image-20230906165829834](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image)/image-20230906165829834.png)
 
 ## Циклы - Loop, With_Items, Until, With_fileglob
 
