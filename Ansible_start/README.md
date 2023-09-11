@@ -197,11 +197,11 @@ become - запускать от имени администратора (в к�
 Так же при помощи цикла можно устанавливать программки на ВМ
 
 ![
-](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908160729957.png)
+](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908160729957.png)
 
 Запуск playbookloop.yml
-![image-20230908162333344](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908162333344.png)
-![image-20230908162355316](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908162355316.png)
+![image-20230908162333344](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908162333344.png)
+![image-20230908162355316](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908162355316.png)
 
 ### Копирование файлов через цикл и улучшение перезагрузки сайтов после изменений
 
@@ -210,16 +210,16 @@ become - запускать от имени администратора (в к�
 
 Для перечисления использовал item, который принимает значения перечисленных файлов в папке, адрес до которой присвоен переменной source_folder
 
-![image-20230908175129320](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908175129320.png)
-![image-20230908175206088](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908175206088.png)
-![image-20230908175234192](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908175234192.png)
-![image-20230908175400735](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908175400735.png)
-![image-20230908175424431](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908175424431.png)
+![image-20230908175129320](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175129320.png)
+![image-20230908175206088](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175206088.png)
+![image-20230908175234192](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175234192.png)
+![image-20230908175400735](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175400735.png)
+![image-20230908175424431](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908175424431.png)
 
 Копирование другим способом.
 Использование специального плагина (он входит в ansible-core). Тоже самое просто короче пишется
 
-![image-20230908180724297](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908180724297.png)
+![image-20230908180724297](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908180724297.png)
 
 ## Шаблоны Jinja Temlate
 
@@ -230,13 +230,13 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 В playbook6.yml нужно убрать ранее написанное копирование `index.html` (которое было через модуль `copy:` c использованием цикла loop) нужно замнить дургим модулем (`templte:`) он такой же как copy, но отличается тем, что проверяет файлы на наличие переменных, если они там есть то производится замена переменной на ее значение. 
 
-![image-20230908182944118](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908182944118.png)
+![image-20230908182944118](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908182944118.png)
 
 Так будет выглядеть index.j2
-![image-20230908191543362](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908191543362.png)
+![image-20230908191543362](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908191543362.png)
 
 Так будет выглядеть playbook6.yml
-![image-20230908224741282](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908224741282.png)
+![image-20230908224741282](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908224741282.png)
 
 ## Создание ролей Roles
 
@@ -244,7 +244,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 `$ansible-gelaxy init deploy_apache_web` 
 (где deploy_apache_web это название роли которое придумывается самостоятельно)
 Создастя директория с этим именем, структура автоматически создается следующая:
-![image-20230908225410609](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908225410609.png)
+![image-20230908225410609](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908225410609.png)
 
 Созданные файлы изначально пустые
 
@@ -260,45 +260,45 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 Суть заключается в том, чтобы раскидать уже созданные playbook6.yml по этим папкам (некоторые не будут использоваться)
 
 Сейчас playbook6.yml выглядит следующим образом:
-![image-20230908230738485](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230738485.png)
-![image-20230908230807171](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230807171.png)
-![image-20230908230841537](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230841537.png)
-![image-20230908230909357](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230909357.png)
-![image-20230908230949960](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908230949960.png)
-![image-20230908231015900](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908231015900.png)
+![image-20230908230738485](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230738485.png)
+![image-20230908230807171](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230807171.png)
+![image-20230908230841537](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230841537.png)
+![image-20230908230909357](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230909357.png)
+![image-20230908230949960](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230949960.png)
+![image-20230908231015900](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908231015900.png)
 
 Переносим сначала файлы которые просто копируются (file1-4), затем генерируемые файлы (index.j2)
-![image-20230908232925617](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908232925617.png)
+![image-20230908232925617](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908232925617.png)
 
 Следующим шагом переносим в `roles/deploy_apache_web/defaults/main.yml` переменные, поскольку по дефолту ресурсный файл будет определен, нужно перенести только одну переменную.
 
-![image-20230908232712747](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908232712747.png) 
+![image-20230908232712747](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908232712747.png) 
 
 Затем переноси hendlers
-![image-20230908233229597](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908233229597.png)
+![image-20230908233229597](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908233229597.png)
 
 Далее переносим tasks
 Не забывая поправить (убрать `source_folder` из блока `temlates` потому что по дефолту обращаться будет к директории `temlates`, а копировать файлы будет из директории `files`)
 
-![image-20230908235436934](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908235436934.png)
+![image-20230908235436934](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908235436934.png)
 
 И чтобы запустить все это необходим playbook7.yml (то что осталось после раскидывания от playbook6.yml с указанием роли)
 
-![image-20230908234557032](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908234557032.png)
+![image-20230908234557032](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908234557032.png)
 Но еще укажу условие при котором будет запускаться эта роль, если ansible_system это линукс
-![image-20230908234921873](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908234921873.png)
+![image-20230908234921873](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908234921873.png)
 
 В общем виде все действия были проделаны так:
-![image-20230908235732408](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230908235732408.png)
+![image-20230908235732408](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908235732408.png)
 
 ## Внешние переменные --extra-vars
 
 К примеру в файле playbook7.yml где описываются на каких хостах деплоить. Чтобы не переписывать этот файл, можно в описании хоста сделать переменную и задать ее значение по умолчанию или передать ее значение уже в консоли через `--extra-vars`
 
-![image-20230909131447469](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909131447469.png)
+![image-20230909131447469](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909131447469.png)
 
 Затем при запуске плейбука указать значение для этой переменной
-![image-20230909131543068](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909131543068.png)
+![image-20230909131543068](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909131543068.png)
 
 Возможно любое написание:
 
@@ -316,20 +316,20 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Есть playbook_include.yml
 
-![image-20230909135629280](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909135629280.png)
+![image-20230909135629280](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909135629280.png)
 
 Чтобы можно было использовать `include` или `import` нужно создать соответсвующие файлы .yml и расфасовать по ним этот playbook (мини версия применения roles) 
 Создам файлы create_folders.yml  и create_files.yml
-![image-20230909140119180](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909140119180.png)
+![image-20230909140119180](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909140119180.png)
 И перенесу в них таски по созданию файлов и директорий
-![image-20230909140234711](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909140234711.png)
+![image-20230909140234711](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909140234711.png)
 
-![image-20230909140253978](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909140253978.png)
+![image-20230909140253978](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909140253978.png)
 Важно отметить что создастся не только файл которого ранее небыло, но и директория (secrets)
 
 Так будет выглядеть по итогу playbook_include.yml  так же можно прописать значение переменной (перезадать ее)
 
-![image-20230909135926836](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909135926836.png)
+![image-20230909135926836](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909135926836.png)
 
 ## Перенаправление выполенения Task из Playbook на определенные серевера delegate_to
 
@@ -337,9 +337,9 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Обратиться можно и к мастеру, просто обращаться к нему нужно по зарезервированному ip `127.0.0.1`
 
-![image-20230909150013335](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909150013335.png)
-![image-20230909150038428](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909150038428.png)
-![image-20230909152741705](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909152741705.png)
+![image-20230909150013335](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909150013335.png)
+![image-20230909150038428](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909150038428.png)
+![image-20230909152741705](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909152741705.png)
 
 Последние 2 блока это перезапуск воркеров,
 
@@ -358,7 +358,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Если необходимо выполнить задачу только один раз использовать `run_once:` и пыолнится только один раз на любом воркере (если нужно на конкретном можно добавить `delegte_to:`)
 
-![image-20230909154330851](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230909154330851.png)
+![image-20230909154330851](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909154330851.png)
 
 
 
@@ -368,77 +368,77 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 Есть playbook_errorhndling.yml
 В первом таске указано, что нужно игнорировать ошибки через `ignore_errors: yes`
 
-![image-20230910153023510](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910153023510.png)
+![image-20230910153023510](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910153023510.png)
 
 Запустим (таск 1 проигнорирован)
 
-![image-20230910153519672](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910153519672.png)
+![image-20230910153519672](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910153519672.png)
 
 Можно приостановить выполнение тасков, если при исполнении одного из них в параметрах значение переменной прило определенное значение
 Для этого нужен параметр `failed_when: " 'значение' in results.stdout "` 
 где  в одинарных ковычках искомое значение при котором исполнение таска будет ошибкой
 `results.stdout` - это указание переменной в которой искать значение
 
-![image-20230910154244357](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910154244357.png)
+![image-20230910154244357](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910154244357.png)
 
 Результат (выполнение второго таска будет ошибкой, тк в значении переменной будет World)
 
-![image-20230910154216959](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910154216959.png)
+![image-20230910154216959](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910154216959.png)
 
 Можно выполнить поиск не только по тексту но и по значению (rc - return code - код возврата 0 true 1 false)
-![image-20230910154600823](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910154600823.png)
+![image-20230910154600823](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910154600823.png)
 
 Можно приостановить выполнение всех после первой же ошибки (таск попытается выполнить задачу на всех хостах, но послеующие таски выполнять не будет)
 
-![image-20230910155806777](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910155806777.png)
+![image-20230910155806777](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910155806777.png)
 
 Результат.
 
-![image-20230910155832558](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230910155832558.png)
+![image-20230910155832558](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910155832558.png)
 
 ## Хранение Секретов Ansible-Vault
 
 Создать файл который будет закрыт паролем (зашифрованный)
-Для этого используется `$ansible-voult create file.txt`![image-20230911135438152](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911135438152.png)
+Для этого используется `$ansible-voult create file.txt`![image-20230911135438152](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135438152.png)
 Нужно будет ввести пароль
 Чтобы просмотреть этот файл  `$ansible-voult view file.txt`
-![image-20230911135515494](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911135515494.png)
+![image-20230911135515494](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135515494.png)
 Если обычным способом попробовать, что выдаст шифр
-![image-20230911135554143](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911135554143.png)
+![image-20230911135554143](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135554143.png)
 Для nano аналогично
 
 Чтобы изменить  `$ansible-voult edit file.txt`
 Чтобы поменять пороль `$ansible-voult rekey file.txt`
 
 Допустим есть файл `playbook_vault.yml`
-![image-20230911140949406](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911140949406.png)
+![image-20230911140949406](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911140949406.png)
 Его можно польностью зашифровать `$ansible-voult encrypt file.txt`
-![image-20230911141213515](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911141213515.png)
+![image-20230911141213515](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911141213515.png)
 Все функции при это playbook сохранил, его можно сохранить, но теперь просмотреть и изменить без пороля его нельзя.
 Чтобы вернуть файл в незашифрованное состояние: `$ansible-voult decrypt file.txt`  (он станет обычным файлом)
 
 Запуск зашифрованных файлов `ansible-playbook playboook_vault.yml --ask-vault-pass` Изза последнего флага он спросит пароль и если его ввести запустится выполнение плейбука
-![image-20230911142050987](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911142050987.png)
+![image-20230911142050987](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911142050987.png)
 
 Указать пароль для decrypt можно через файл: `ansible-playbook playboook_vault.yml --vault-password-file pass.txt`
-![image-20230911142402572](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911142402572.png)
+![image-20230911142402572](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911142402572.png)
 
 Чтобы не шифровать весь файл, можно зашифровать только строку с паролем. `Для этого $ansible-vault encrypt_string`
-![image-20230911143336757](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911143336757.png)
+![image-20230911143336757](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911143336757.png)
 
 И вставить зашифрованный вариант пароля в playbook
-![image-20230911143424700](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911143424700.png)
+![image-20230911143424700](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911143424700.png)
 
 Тоже создание пароля но в одну строку: `$echo -n "password" | ansible-vault encrypt_string`
 
-![image-20230911143809083](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911143809083.png)
+![image-20230911143809083](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911143809083.png)
 
 Если применяется зашифрованная переменная, то при запуске плайбука ее нужно расшифровать, так же как если бы был зашифрован весь файл (запросить вопрос пароля): `$ansible-playbook playboook_vault.yml --ask-vault-pass`
 Так же если используется шифрование нескольких переменных, то нужно чтобы у них был один и тот же пароль.
-![image-20230911144345116](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911144345116.png)
+![image-20230911144345116](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911144345116.png)
 
 Иначе (переменная так и запишится шифром и выдаст ошибку)
-![image-20230911144116794](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911144116794.png)
+![image-20230911144116794](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911144116794.png)
 
 Кратко.
 
