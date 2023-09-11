@@ -442,4 +442,5 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Кратко.
 
-![image-20230911144420850](Ansible_start/image/image-20230911144420850.png)
+![image-20230911144420850](DevOps_Practice/Ansible_start
+/image/image-20230911144420850.png)
