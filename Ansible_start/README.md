@@ -442,4 +442,4 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Кратко.
 
-![image-20230911144420850](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230911144420850.png)
+![image-20230911144420850](/image/image-20230911144420850.png)
