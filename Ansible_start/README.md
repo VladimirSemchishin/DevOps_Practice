@@ -136,6 +136,7 @@ become - запускать от имени администратора (в к�
 ![image-20230905145030254](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905145030254.png)
 
 Чтобы его выполнить: `$ansible-playbook playbook1.yml`
+
 ![image-20230905150128404](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905150128404.png)
 
 ### playbook2.yml 
@@ -147,6 +148,7 @@ become - запускать от имени администратора (в к�
 ![image-20230905151607280](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905151607280.png)
 
 Запуск, Ansivble выведет какие шаги он сделал (tasks) с подписью (name) 
+
 ![image-20230905151705898](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230905151705898.png)
 
 ### playbook3.yml
@@ -167,6 +169,7 @@ become - запускать от имени администратора (в к�
 ![image-20230906151546140](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906151546140.png)
 
 Исполнение playbook4.yml
+
 ![image-20230906151704371](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906151704371.png)
 
 ![image-20230906151747394](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906151747394.png)
@@ -174,16 +177,20 @@ become - запускать от имени администратора (в к�
 ## Блоки и Условия - Block-When 
 
 Например, если 3 сервера на котором нужно развернуть сайт, один из них ubuntu два остальных centos. Для centos команда yum, а для ubuntu apt, по этому необходимо задать условие, когда ansible_os_family (о этой переменной я узнал из `-m setup`) равна redhat нужно использовать yum, когда  debian нужно apt ( так же атрибуты `name=httpd` и `name=apache2` соответсвенно)
+
 ![image-20230906162940052](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906162940052.png)
 
 Применение playbook5.yml
+
 ![image-20230906163120348](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906163120348.png)
 ![image-20230906163137843](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906163137843.png)
 
 Видно что when используется не удобно (постоянно переписывается), значит те таски в которых он есть нужно объединить. А объединяются они через блок `block:` так же важно записывать `when:` в конце блока.
+
 ![image-20230906165640879](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906165640879.png)
 
 Применение playbook5.yml
+
 ![image-20230906165735046](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230906165735046.png)
 ![image-20230906165829834](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image)/image-20230906165829834.png)
 
@@ -196,10 +203,10 @@ become - запускать от имени администратора (в к�
 
 Так же при помощи цикла можно устанавливать программки на ВМ
 
-![
-](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908160729957.png)
+![](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908160729957.png)
 
 Запуск playbookloop.yml
+
 ![image-20230908162333344](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908162333344.png)
 ![image-20230908162355316](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908162355316.png)
 
@@ -233,9 +240,11 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ![image-20230908182944118](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908182944118.png)
 
 Так будет выглядеть index.j2
+
 ![image-20230908191543362](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908191543362.png)
 
 Так будет выглядеть playbook6.yml
+
 ![image-20230908224741282](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908224741282.png)
 
 ## Создание ролей Roles
@@ -244,6 +253,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 `$ansible-gelaxy init deploy_apache_web` 
 (где deploy_apache_web это название роли которое придумывается самостоятельно)
 Создастя директория с этим именем, структура автоматически создается следующая:
+
 ![image-20230908225410609](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908225410609.png)
 
 Созданные файлы изначально пустые
@@ -260,6 +270,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 Суть заключается в том, чтобы раскидать уже созданные playbook6.yml по этим папкам (некоторые не будут использоваться)
 
 Сейчас playbook6.yml выглядит следующим образом:
+
 ![image-20230908230738485](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230738485.png)
 ![image-20230908230807171](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230807171.png)
 ![image-20230908230841537](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908230841537.png)
@@ -268,6 +279,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ![image-20230908231015900](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908231015900.png)
 
 Переносим сначала файлы которые просто копируются (file1-4), затем генерируемые файлы (index.j2)
+
 ![image-20230908232925617](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908232925617.png)
 
 Следующим шагом переносим в `roles/deploy_apache_web/defaults/main.yml` переменные, поскольку по дефолту ресурсный файл будет определен, нужно перенести только одну переменную.
@@ -275,6 +287,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ![image-20230908232712747](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908232712747.png) 
 
 Затем переноси hendlers
+
 ![image-20230908233229597](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908233229597.png)
 
 Далее переносим tasks
@@ -285,10 +298,13 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 И чтобы запустить все это необходим playbook7.yml (то что осталось после раскидывания от playbook6.yml с указанием роли)
 
 ![image-20230908234557032](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908234557032.png)
+
 Но еще укажу условие при котором будет запускаться эта роль, если ansible_system это линукс
+
 ![image-20230908234921873](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908234921873.png)
 
 В общем виде все действия были проделаны так:
+
 ![image-20230908235732408](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230908235732408.png)
 
 ## Внешние переменные --extra-vars
@@ -298,6 +314,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ![image-20230909131447469](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909131447469.png)
 
 Затем при запуске плейбука указать значение для этой переменной
+
 ![image-20230909131543068](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909131543068.png)
 
 Возможно любое написание:
@@ -320,11 +337,15 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Чтобы можно было использовать `include` или `import` нужно создать соответсвующие файлы .yml и расфасовать по ним этот playbook (мини версия применения roles) 
 Создам файлы create_folders.yml  и create_files.yml
+
 ![image-20230909140119180](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909140119180.png)
+
 И перенесу в них таски по созданию файлов и директорий
+
 ![image-20230909140234711](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909140234711.png)
 
 ![image-20230909140253978](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230909140253978.png)
+
 Важно отметить что создастся не только файл которого ранее небыло, но и директория (secrets)
 
 Так будет выглядеть по итогу playbook_include.yml  так же можно прописать значение переменной (перезадать ее)
@@ -386,6 +407,7 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ![image-20230910154216959](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910154216959.png)
 
 Можно выполнить поиск не только по тексту но и по значению (rc - return code - код возврата 0 true 1 false)
+
 ![image-20230910154600823](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230910154600823.png)
 
 Можно приостановить выполнение всех после первой же ошибки (таск попытается выполнить задачу на всех хостах, но послеующие таски выполнять не будет)
@@ -399,34 +421,49 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 ## Хранение Секретов Ansible-Vault
 
 Создать файл который будет закрыт паролем (зашифрованный)
-Для этого используется `$ansible-voult create file.txt`![image-20230911135438152](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135438152.png)
+Для этого используется `$ansible-voult create file.txt`
+
+![image-20230911135438152](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135438152.png)
+
 Нужно будет ввести пароль
 Чтобы просмотреть этот файл  `$ansible-voult view file.txt`
+
 ![image-20230911135515494](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135515494.png)
+
 Если обычным способом попробовать, что выдаст шифр
+
 ![image-20230911135554143](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911135554143.png)
+
 Для nano аналогично
 
 Чтобы изменить  `$ansible-voult edit file.txt`
 Чтобы поменять пороль `$ansible-voult rekey file.txt`
 
 Допустим есть файл `playbook_vault.yml`
+
 ![image-20230911140949406](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911140949406.png)
+
 Его можно польностью зашифровать `$ansible-voult encrypt file.txt`
+
 ![image-20230911141213515](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911141213515.png)
+
 Все функции при это playbook сохранил, его можно сохранить, но теперь просмотреть и изменить без пороля его нельзя.
 Чтобы вернуть файл в незашифрованное состояние: `$ansible-voult decrypt file.txt`  (он станет обычным файлом)
 
 Запуск зашифрованных файлов `ansible-playbook playboook_vault.yml --ask-vault-pass` Изза последнего флага он спросит пароль и если его ввести запустится выполнение плейбука
+
 ![image-20230911142050987](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911142050987.png)
 
 Указать пароль для decrypt можно через файл: `ansible-playbook playboook_vault.yml --vault-password-file pass.txt`
+
 ![image-20230911142402572](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911142402572.png)
 
 Чтобы не шифровать весь файл, можно зашифровать только строку с паролем. `Для этого $ansible-vault encrypt_string`
+
 ![image-20230911143336757](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911143336757.png)
 
 И вставить зашифрованный вариант пароля в playbook
+
 ![image-20230911143424700](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911143424700.png)
 
 Тоже создание пароля но в одну строку: `$echo -n "password" | ansible-vault encrypt_string`
@@ -435,9 +472,11 @@ Ansible Temlate - это шаблоны, они пишутся в формате
 
 Если применяется зашифрованная переменная, то при запуске плайбука ее нужно расшифровать, так же как если бы был зашифрован весь файл (запросить вопрос пароля): `$ansible-playbook playboook_vault.yml --ask-vault-pass`
 Так же если используется шифрование нескольких переменных, то нужно чтобы у них был один и тот же пароль.
+
 ![image-20230911144345116](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911144345116.png)
 
 Иначе (переменная так и запишится шифром и выдаст ошибку)
+
 ![image-20230911144116794](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/image/image-20230911144116794.png)
 
 Кратко.
