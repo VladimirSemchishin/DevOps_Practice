@@ -1,0 +1,8 @@
+Vova<Moscow<Russia,10100 
+Galya<Moscow<Russia,10100
+Dima<Gublinsky<linux<90100
+Kolya<Gublinsky<Russia<90100
+Lena<Gublinsky<Russia<90100
+Pasha<Gublinsky<Russia<90100
+Dima<Gublinsky<Russia<90100
+Dima<Gublinsky<Linux<90100
