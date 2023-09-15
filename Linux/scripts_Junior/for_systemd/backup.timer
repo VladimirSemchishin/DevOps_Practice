@@ -1,0 +1,15 @@
+#cp /etc/systemd/system
+
+[unit]
+Description=BackupTimer
+Requires=backup.service
+
+[timer]
+Unit=backup.service
+OnCalendar=* *-*-* 12:00:00         #Дневной каждый день в 12:00
+OnCalendar=Fri *-*-* 12:00:00       #Недельный каждое воскресенье в 12:00
+OnCalendar=* *-*-01 12:00:00        #Месячный 1 числа в 12:00
+OnCalendar=* *-12-31 23:00:00       #Годовой 31 декабря в 23:00
+
+[install]
+WantedBy=timers.target
