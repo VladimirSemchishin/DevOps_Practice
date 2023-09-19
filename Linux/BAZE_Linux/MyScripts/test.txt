@@ -1,0 +1,14 @@
+total 48K
+drwxrwxr-x 2 smvn smvn 4,0K сен 16 15:22 backup_day
+drwxrwxr-x 2 smvn smvn 4,0K сен 16 15:22 backup_month
+drwxrwxr-x 2 smvn smvn 4,0K сен 16 15:22 backup_week
+drwxrwxr-x 2 smvn smvn 4,0K сен 16 15:22 backup_year
+-rwxrwxrwx 1 smvn smvn   35 сен 14 15:59 file1.txt
+-r-xr-xr-x 1 smvn smvn   34 сен 14 15:59 file2.txt
+-rwxrwxr-- 1 smvn smvn  193 сен 14 15:59 script1.sh
+-rwxrwxrwx 1 smvn smvn 1,2K сен 14 16:25 script2.sh
+-rwxrwxrwx 1 smvn smvn 1,2K сен 14 16:58 script3.sh
+-rwxrwxrwx 1 smvn smvn  814 сен 15 09:00 script4.sh
+-rwxrwxrwx 1 smvn smvn  287 сен 14 17:44 script5.sh
+-rwxrwxrwx 1 smvn smvn   42 сен 16 15:16 script6.sh
+-rw-rw-r-- 1 smvn smvn    0 сен 16 15:39 test.txt

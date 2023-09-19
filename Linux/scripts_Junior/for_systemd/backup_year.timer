@@ -1,0 +1,12 @@
+#cp /etc/systemd/system
+
+[unit]
+Description=BackupTimer
+Requires=backup_year.service
+
+[timer]
+Unit=backup_year.service
+OnCalendar=* *-12-31 20:00:00
+
+[install]
+WantedBy=timers.target

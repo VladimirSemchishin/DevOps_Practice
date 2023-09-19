@@ -1,8 +1,7 @@
-# cd /etc/systemd/system
 
 [Unit]
 Description=BackupMySystem
-Wants=backup.timer
+Wants=backup_year.timer
 
 [Service]
 Type=oneshot

@@ -1,0 +1,10 @@
+[unit]
+Description=BackupTimer
+Requires=backup_month.service
+
+[timer]
+Unit=backup_month.service
+OnCalendar=* *-*-01 20:00:00
+
+[install]
+WantedBy=timers.target

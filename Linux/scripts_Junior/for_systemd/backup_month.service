@@ -1,0 +1,10 @@
+[Unit]
+Description=BackupMySystem
+Wants=backup_month.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/smvn/link_DevOps_practice/Linux/scripts_Junior/backup_script.sh
+
+[Install]
+WantedBy=multi-user.target

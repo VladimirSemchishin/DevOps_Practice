@@ -1,0 +1,10 @@
+[unit]
+Description=BackupTimer
+Requires=backup_week.service
+
+[timer]
+Unit=backup_week.service
+OnCalendar=Fri *-*-* 20:00:00       
+
+[install]
+WantedBy=timers.target
