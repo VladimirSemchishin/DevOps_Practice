@@ -1,0 +1,11 @@
+
+FROM ubuntu:latest
+
+RUN apt-get -y update
+RUN apt-get -y install apache2
+
+COPY index.html /var/www/html/
+
+#запуск сервера apache на бэкграугде
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
+EXPOSE 80
