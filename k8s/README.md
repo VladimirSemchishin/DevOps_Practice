@@ -171,11 +171,256 @@ Horizontal Pod Autoscaler
 
 **Cluste**r - логическое объединение nodes
 
-## Создание и управление **Pods**
+## 8. Создание и управление **Pods**
 
 Что должно получиться 
 
 ![image-20231012094226404](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012094226404.png)
 
-Я делаю через YC, для этого я зашел в свой кабинет и создал кластер и 2 nodes. После чего я 
+Я делаю через YC, для этого я зашел в свой кабинет и создал кластер и в нем 2 nodes. 
 
+Добавил учетные данные в конфигурационный файл kubectl 
+
+`$yc managed-kubernetes cluster get-credentials test-k8s-cluster --external`
+
+он находится по адресу: $HOME/.kube/config
+
+Для проверки конфигурации после добавления учетных данных:
+
+`$kubectl config view`
+
+Итог:
+
+![image-20231012141348817](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012141348817.png)
+
+Запуск первого пода. Создадим image, из него контейнер, который будет бежать в поде.
+
+Используйте следующий синтаксис для выполнения команд `kubectl` в терминале:
+
+```shell
+kubectl [command] [TYPE] [NAME] [flags]
+```
+
+### Создание пода
+
+`$kubectl run hello --image=httpd:latest --port=80`
+
+где hello - это имя пода, --image - образ (его он может взять с пк или dockerhub)
+
+![image-20231012144248737](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012144248737.png)
+
+### Удаление пода
+
+`$kubectl delete hello`
+
+![image-20231012144331675](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012144331675.png)
+
+Полечение полной информации о pod
+
+`$kubectl describe pods hello`
+
+![image-20231012144544118](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012144544118.png)
+
+Как видно, под сейчас бежит на node - cl164r9u1m42kmu8oge4-unof
+
+### Запуск комад внутри pod
+
+Узнать время на pod
+
+`$kubectl exec hello date`
+
+`$kubectl exec -it hello sh` - запустит shell интерактивно
+
+![image-20231012145401824](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012145401824.png)
+
+Просмотр логов
+
+`$ubectl logs hello`
+
+![image-20231012145518281](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012145518281.png)
+
+Чтобы перенаправить порт и увидеть страничку пода нужно
+
+`$kubectl port-forward hello 7788:80`
+
+![image-20231012145804804](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012145804804.png)
+
+### Создание и запуск подов через config файл (манифест)
+
+Минимальное количество строчек для запуска манифеста
+
+![image-20231012152159986](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012152159986.png)
+
+Конкретный формат поля-объекта `spec` зависит от типа объекта Kubernetes и содержит вложенные поля, предназначенные только для используемого объекта. В [справочнике API Kubernetes](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/) можно найти формат спецификации любого объекта Kubernetes. Например, формат `spec` для объекта Pod находится в [ядре PodSpec v1](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#podspec-v1-core), а формат `spec` для Deployment — в [DeploymentSpec v1 apps](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#deploymentspec-v1-apps).
+
+Для созданиния необх вып. команду apply
+
+`$kubectl apply -f pod-myweb-ver1.yaml`
+
+![image-20231012152742275](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012152742275.png)
+
+Откроем порт
+
+![image-20231012152935154](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012152935154.png)
+
+Чтобы внести изменения, под необходимо удалить (delete) и занаво создать на основе манифеста с изменениями
+
+`$kubectl delete -f pod-myweb-ver1.yaml`
+
+И занаво создаю
+
+`$kubectl apply -f pod-myweb-ver1.yaml`
+
+После пробрасываю порт на открытый в контейнере.
+
+`$kubectl port-forward my-web 8889:80`
+
+Изменять файл, а после занаво сразу создавать контейнер нельзя. Исключение - name  и image контейнера. И то в консоли нужно приостанаваливать (ctrl+c) процесс, а не убивать (ctrl+z)
+
+### Labels
+
+это пары ключ/значение, которые прикрепляются к объектам, таким как pod. Могут быть прикреплены к объектам в момент создания и впоследствии добавляться и изменяться в любое время. Для каждого объекта может быть определен набор меток ключ/значение. Каждый ключ должен быть уникальным для данного объекта.
+
+![image-20231012185851210](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012185851210.png)
+
+Чтобы запустить 2 контейнера в 1 pod необходимо просто продублировать:
+
+![image-20231012190906678](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012190906678.png)
+
+Чтобы получить к ним доступ нужно по аналогии:
+
+`$kubectl port-forward my-app  8890:80` - сервер nginx работает
+
+`$kubectl port-forward my-app  8890:8080` - работает tomcat 
+
+**Если сервер** умирает, то поды тоже умирают, не востанавливаются, их необходимо занаво создавать. По этой причине и создали deployment
+
+Итоговый манифест:
+
+![image-20231012192102751](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012192102751.png)
+
+## 9. Создание и управление Deployment  
+
+То что должно получиться 
+
+![image-20231012193634185](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012193634185.png)
+
+Проверка наличия Deployment
+
+`$kubectl get deployments`
+
+`$kubectl get deploy` - сокращенная версия
+
+![image-20231012194154610](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012194154610.png)
+
+Создание deployment
+
+`$kubectl create deployment vladimir-depoyment --image nginx:latest`
+
+![image-20231012194504465](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012194504465.png)
+
+Как видно этот деплоймент создал под (в начало добавил имя дейплоймента)
+
+Как и для пода можно посмотреть подробную информацию
+
+`$kubectl describe deploy  vladimir-depoyment`
+
+![image-20231012194811140](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012194811140.png)
+
+### Scale - масштабирование
+
+![image-20231012195141288](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012195141288.png)
+
+Создалось дополнительно 3 пода
+
+Так же создалась ReplicaSets
+
+`$kubectl get rs`
+
+![image-20231012195333479](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012195333479.png)
+
+Если под выйдет из строя, то он тут же восстановится. Так все поды распределены по nodes.
+
+![image-20231012195455889](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012195455889.png)
+
+### Autoscale
+
+`$kubectl autoscale deployment vladimir-depoyment --min=4 --max=6 --cpu-percent=80`
+
+![image-20231012200218642](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012200218642.png)
+
+Добавили к уже существующему deployment, (эта команда не сможет создать новый деплоймент) **hpa - horizontal pod autoscaler**
+
+Его можно так же просмотреть
+
+![image-20231012200514428](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012200514428.png)
+
+### Просмотерть историю и статус всех deployment 
+
+`$kubectl rollout history deployment/vladimir-depoyment`
+
+![image-20231012200805910](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012200805910.png)
+
+`$kubectl rollout status deployment/vladimir-depoyment`
+
+![image-20231012201031797](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012201031797.png)
+
+### Обновление в deployment, так же возврат и перемещение
+
+обновление образа в контейнере
+
+`$kubectl set image deployment/vladimir-depoyment container_name=httpd:latest --record`
+
+Если deployment не удался, то вернуться к предыдущему deploy можно командой
+
+`$kubectl rollout history deployment/vladimir-depoyment`
+
+История выглядит следующим образом
+
+![image-20231012202320218](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012202320218.png)
+
+Чтобы переместиться на любой deploy из истории
+
+`$kubectl rollout undo deployment/vladimir-depoyment --to-revision=2`
+
+где 2 - это номер версии deploy в истории 
+
+Если имя образа не изменяется, то deploy нужно перезагрузить
+
+`$kubectl rollout restart deployment/vladimir-depoyment`
+
+### Созадние deploymet через манифест
+
+![image-20231012204931780](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012204931780.png)
+
+Создался deploy 
+
+![image-20231012205003612](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012205003612.png)
+
+![image-20231012205027088](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012205027088.png)
+
+### Создание деплоя с указанием количества реплик
+
+В спецификации деплоя нужно указать сколько реплик нужно делать
+
+![image-20231012205657048](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012205657048.png)
+
+Тогда при запуске этого манифеста будет создаваться сразу 3 пода.
+
+![image-20231012213623456](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012213623456.png)
+
+![image-20231012213714324](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012213714324.png)
+
+### Удаление
+
+если поды создавались из файлов, то и уничтожать их нужно тоже через файлы
+
+`$kubectl delete -f deployment-2-replicas.yaml`
+
+`$kubectl delete deploy vladimir-depoyment` - этот deploy создавался в ручную
+
+![image-20231012214037995](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012214037995.png)
+
+### Повторение команд
+
+![image-20231012214256487](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012214256487.png)
