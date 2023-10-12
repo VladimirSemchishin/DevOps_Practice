@@ -1,0 +1,25 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata: 
+  name: my-web-depoyment-replicas     #как называется deploy
+  labels:
+    app: my-k8s-application  #не обязательно, но это хорошая практика
+    env: prod
+    owner: SemchishinVladimir
+
+spec:
+  replicas: 3                #тут указываются кол-во реплик
+
+  selector:                  #с какими подами Deployment будет работать (искатель)
+    matchLabels:              #по какому ключ-значение искать подключаемый под
+      project: vnsm
+  template:                  #описание пода
+    metadata:
+      labels:                #должны быть равны тем что в selector
+        project: vnsm 
+    spec:                    #описание контейнера
+      containers:
+        - name: vnsm-web
+          image: httpd:latest
+          ports:
+            - containerPort: 80

@@ -1,0 +1,55 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata: 
+  name: my-web-depoyment-autoscaling     #как называется deploy
+  labels:
+    app: my-k8s-application   #не обязательно, но это хорошая практика
+    env: prod
+    owner: SemchishinVladimir
+
+spec:
+  replicas: 2                 #тут указываются кол-во реплик
+
+  selector:                   #с какими подами Deployment будет работать (искатель)
+    matchLabels:              #по какому ключ-значение искать подключаемый под
+      project: mnsv
+  template:                   #описание пода
+    metadata:
+      labels:                 #должны быть равны тем что в selector
+        project: mnsv 
+    spec:                     #описание контейнера
+      containers:
+        - name: mnsv-web
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+
+###добавляю еще один ресурс автомасштабирование
+---
+apiVersion: autoscaling/v2              #используемая для создания объекта версия API Kubernetes
+kind: HorizontalPodAutoscaler           #что создаю (тип объекта)
+metadata:        
+  name: my-autoscale                    #название этого HorizontalPodAutoscaler
+        
+spec:        
+  scaleTargetRef:                       #что он будет масштабировать (описано в этом блоке)
+    apiVersion: apps/v1                 
+    kind: Deployment       
+    name: my-web-depoyment-autoscaling 
+  minReplicas: 2                        #минимальное кол-во рекплик
+  maxReplicas: 6                        #максимальное кол-во рекплик
+  
+  metrics:                              #на основании чего масштабировать
+    - type: Resource                    #тип
+      resource:
+        name: cpu                       #какой ресурс
+        target:                         #какая цель
+          type: Utilization             #тип цели - использование
+          averageUtilization: 70        #среднее cpu всех подов
+    - type: Resource
+      resource: 
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80         #или на основании средней памяти всего подовы
