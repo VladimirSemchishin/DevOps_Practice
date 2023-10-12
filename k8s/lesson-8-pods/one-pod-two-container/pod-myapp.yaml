@@ -1,0 +1,20 @@
+apiVersion : v1               #используемая для создания объекта версия API Kubernetes
+kind : Pod                    #что создаем (тип объекта)
+metadata:                     #данные, позволяющие идентифицировать объект (name, UID и необязательное поле namespace)
+  name: my-app                #имя 
+  labels:
+    env: prod
+    app: main
+    tier: frontend
+    owner: SemchishinVladimir
+spec:                         #требуемое состояние объекта (пода)
+  containers:
+    - name: container-web
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+                              #добавляем еще один контейнер
+    - name: container-api  
+      image: tomcat:8.5.38
+      ports:
+        - containerPort: 8080
