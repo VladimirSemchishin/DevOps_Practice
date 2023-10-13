@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-multi-pod
+  labels:
+    app: my-k8s-deployment
+
+spec:
+  replicas: 3
+  
+  selector:
+    matchLabels:
+      project: vnsm
+  
+  template:
+    metadata:
+      labels:
+        project: vnsm
+    spec:
+      containers:
+        - name: vnsm-web-nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80  #порт на pod
+
+        - name: vnsm-web-tomcat
+          image: tomcat:8.5.38
+          ports: 
+            - containerPort: 8080  #порт на pod
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-multi-pods-service
+  labels:
+    env: prod
+    owner: SemchishinVladimir
+spec:
+  type: LoadBalancer
+  selector: 
+    project: vnsm
+  ports:
+    - name: my-web-app-listenner
+      protocol: TCP
+      port: 80                       #порт на самом LoadBalancer
+      targetPort: 80                 #порт на pod
+
+    - name: not-my-web-listenner
+      protocol: TCP
+      port: 8888                    #порт на самом LoadBalancer
+      targetPort: 8080              #порт на pod (tomcat отвечает на порт 8080)

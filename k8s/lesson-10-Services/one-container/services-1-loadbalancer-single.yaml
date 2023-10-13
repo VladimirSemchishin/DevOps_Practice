@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment          #как называется deployment
+  labels:
+    app: my-k8s-deployment         #не обязательно, но это хорошая практика
+
+spec:                              #описание Deployment
+  replicas: 3                      #сколько первоначально в нем создать pods
+  
+  selector:                        #описание того какие pods будут входить в Deployment
+    matchLabels:                    #pod подходит если его ключ-занчение совпадает
+      project: smvn
+  
+  template:                        #шаблон экземпляра pod
+    metadata:                      #его ключ-значение
+      labels:
+        project: smvn              #service будет коннектиться к описанному pod (не deploy)
+    spec:                          #описание экземпляра pod
+      containers:
+        - name: smvn-web
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+--- #описание в сервиса (--- нужно если все ресурсы описываются в одном файле)
+apiVersion: v1
+kind: Service
+metadata: 
+  name: my-single-pod-service
+  labels:
+    env: prod
+    owner: SemchishinVladimir
+
+spec:
+  type: LoadBalancer              #тип ресурса service
+  
+  selector:                       #на какие pods, service будет работать
+    project: smvn                 #выбираем pods с этими ключ-значениями 
+
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 80                    #Порт на LoadBalancer
+      targetPort: 80              #Порт на pod
+  
+        

@@ -424,3 +424,95 @@ kubectl [command] [TYPE] [NAME] [flags]
 ### Повторение команд
 
 ![image-20231012214256487](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012214256487.png)
+
+## Создание и Управление - SERVICES 
+
+Что должно получиться
+
+![image-20231013182312041](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013182312041.png)
+
+Всего есть 4 вида сервисов, каждому виду соответсвует свое поведение.
+
+**ClusterIP** - (по умолчанию) - (IP только внутри k8s Cluster) - открывает service на внутреннем IP-адресе кластера. При выборе этого значения служба становится доступной только изнутри кластера. Можно вывести службу в публичный интеренет используюя <u>ingress</u> или <u>geteway</u> 
+
+**NodePort** - (определенный порт на всех k8s worker nodes) - выставляет service на IP-адресе каждого узла на статический порт (<u>NodePort</u>). Чтобы сделать порт узла доступным, Kubernetes устанавливает кластерный IP-адрес, так же как если бы вы запросили сервис типа: <u>ClusterIP</u>.
+
+**LoadBalancer** -  - внешний доступ к service осуществляется с помощью внешнего балансировщика нагрузки. Kubernetes не предлагает компонент балансировки нагрузки напрямую; его необходимо предоставить, либо интегрировать кластер Kubernetes с облачным провайдером.
+
+**ExternalName** - сопоставляет service с содержимым поля externalName (например, с именем хоста api.foo.bar.example). Это сопоставление настраивает DNS-сервер кластера на возврат CNAME-записи с таким значением внешнего имени хоста. Никакого проксирования не устанавливается.
+
+**Для начала (повторение)**
+
+Создание deployment
+
+`$kubectl create deployment vova-deloy --image nginx:latest`
+
+Создание реплик
+
+`$kubectl scale deployment vova-deloy --replicas 3`
+
+![image-20231013184452304](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013184452304.png)
+
+**Создание service --type=ClusterIP**
+
+`$kubectl expose deployment vova-deloy --type=ClusterIP --port 80`
+
+`$kubectl get services`  - посмотреть какие сервисы созданы
+
+**services** можно кратко писать **svc**
+
+![image-20231013184903622](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013184903622.png)
+
+Теперь если зайти на любой из воркеров (узел в кластере, а он в свою очередь развернут на ВМ, можно сравнить, ip node будет соотв ip ВМ на которой он равернут)
+
+![image-20231013185537514](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013185537514.png)
+
+Как видно изнутри кластера все работет
+
+### Удаление service
+
+![image-20231013185829226](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013185829226.png)
+
+`$kubectl delete service vova-deloy`
+
+![image-20231013185925080](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013185925080.png)
+
+**Создание service --type=NodePort**
+
+`$kubectl expose deploy vova-deloy --type=NodePort --port 80`
+
+![image-20231013190530616](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013190530616.png)
+
+Он создал ClusterIP по умолчанию, также создал порт 31477. Если обратиться по этому порту с воркеров внутри кластера, то попадешь на приложение.
+
+Теперь nodes доспуны из интернета по своему ExternalIP, чтобы уго узнать нужно посмотреть подробную информацию 
+
+`$kubectl describe nodes`
+
+вывод будет очень большим, по этому можно искать конкретную строку :
+
+`$kubectl describe nodes | grep ExternalIP`
+
+![image-20231013191451788](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013191451788.png)
+
+**Удаление**
+
+`$kubectl delete svc vova-deloy`
+
+**Создание service --type=LoadBalancer**
+
+`$kubectl expose deploy vova-deloy --type=LoadBalancer --port 80`
+
+![image-20231013192209329](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013192209329.png)
+
+Как видно создался ExternalIP по которому LoadBalancer будет доступен. Если по нему перейти то будет доспуно наше приложение, которое развернуто на 3 nodes. Если обновлять они будут сменять друг друга.
+
+![image-20231013192344574](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013192344574.png)
+
+**Удалим все** 
+
+`$kubectl delete svc vova-deloy`
+
+`$kubectl delete deploy vova-deloy`
+
+### Создание манифеста
