@@ -425,7 +425,7 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 ![image-20231012214256487](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012214256487.png)
 
-## Создание и Управление - SERVICES 
+## 10. Создание и Управление - SERVICES 
 
 Что должно получиться
 
@@ -516,3 +516,54 @@ kubectl [command] [TYPE] [NAME] [flags]
 `$kubectl delete deploy vova-deloy`
 
 ### Создание манифеста
+
+Сначала описываю ресурс "Deployment", после, начиная с --- описываю ресурс "Service"
+
+![image-20231013203808892](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013203808892.png)
+
+Запусе манифеста
+
+`$kubectl apply -f services-1-loadbalancer-single.yaml`
+
+![image-20231013203907731](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013203907731.png)
+
+![image-20231013204029548](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013204029548.png)
+
+Теперь можно подлючиться к LoadBalancer аналогично тому как это делалось выше через консоль.
+
+![image-20231013204144551](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013204144551.png)
+
+### Теперь все тоже самое, только с несколькими контейнерами
+
+![image-20231013210652149](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013210652149.png)
+
+**Запуск**
+
+`$kubectl apply -f services-2-loadbalancer-mylti.yaml`
+
+![image-20231013210829411](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013210829411.png)
+
+Как видно у service открыто 2 порта. То есть по адресу 84.201.131.208:80 будет nginx, на 84.201.131.208:8888 будет tomcat
+
+
+
+### Создание манифеста c Deployment, LoadBalancer и AutoScale
+
+![image-20231014005324984](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014005324984.png)
+
+**Запуск**
+
+`$kubectl apply -f service-3-loadbalancer-autoscaling.yaml`
+
+![image-20231014005446553](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014005446553.png)
+
+![image-20231014010224088](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014010224088.png)
+
+Проверка также показывает что все создалось корректно
+
+Повторение команд
+
+![image-20231014010601307](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014010601307.png)
+
+
+
