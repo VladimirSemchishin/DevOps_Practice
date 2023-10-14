@@ -1,6 +1,6 @@
 # Default Values for my Helm Chart
 
 container:
-  image: adv4000/k8sphp:latest
+  image: tomcat:8.5.38
 
-replicaCount: 2
+replicaCount: 4

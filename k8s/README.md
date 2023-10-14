@@ -683,3 +683,73 @@ HelmChart - упаковка приложения в helm
 
 `$helm create Chart-Auto` - создастся папка с именем Chart-Auto
 
+![image-20231014151627861](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014151627861.png)
+
+### Использование пременных
+
+![image-20231014153859776](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014153859776.png)
+
+Создаем переменные в файле values.yaml
+
+![image-20231014154301876](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014154301876.png)
+
+После изменяем в файле deployment.yaml значение на переменную
+
+![image-20231014154657854](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014154657854.png)
+
+`.Values.` - это обращение к файлу values.yaml
+
+`container.image` - это указание переменной
+
+Helm deploy - называется release  
+
+![image-20231014180647260](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014180647260.png)
+
+![image-20231014180703960](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014180703960.png)
+
+### Команды helm
+
+`$helm list` - покажет какие deploy были сделаны через helm
+
+`$helm install app Chart_Semchishin` - запуск deploy (app - это имя этого деплоя)
+
+`$helm upgrade app Chart_Semchishin/ --set container.image=httpd:latest` - обновление деплоя через helm
+
+`helm upgrade app Chart_Semchishin/ -f prod-values.yaml` - обновление деплоя через helm по файлу
+
+Тепрерь при помощи helm можно создать запакованный файл
+
+`$helm package Chart_Semchishin` 
+
+![image-20231014183422469](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014183422469.png)
+
+И инсталлировать можно сразу из этого архива.
+
+`$helm install app App-HelmChart-0.1.0.tgz`
+
+![image-20231014183620282](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014183620282.png)
+
+### Запуск из интернета
+
+Так же можно запускать и чарты из интернета (кто то уже создал все выше описанное и это можно сразу запустить через helm команду)
+
+Для этого нужно подключить удаленный репозиторий
+
+`$helm search repo` - просмотреть доступные репозитории
+
+Можно добавить репозиторий, например bitnami и после этого, выполняя команду (`$helm search repo`) будут выдаваться доступные в их репозитории charts
+
+### Повторение команд
+
+![image-20231014185344914](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014185344914.png)
+
+
+
+
+
+
+
+
+
+
+
