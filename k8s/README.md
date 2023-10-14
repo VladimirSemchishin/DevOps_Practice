@@ -565,5 +565,69 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 ![image-20231014010601307](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014010601307.png)
 
+## Создание и Управление - INGRESS Controllers  (не получилось)
+
+Ранее мы строили следующую структуру. Делали deployment приложения (их 3 на картинке), после чего подключали Servise типа LoadBalancer у которых есть свой ExternalIP через который можно иметь доступ из интеренета.
+
+Но каждый такой service стоит денег и если много приложений это выходит дорого.  
+
+![image-20231014101224290](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014101224290.png)
+
+Можно создать этот же сэтап, только с использованием Ingress controller (это будет значительно дешевле)
+
+Суть в том, чтобы на те же самые Deployment создать Service типа ClusterIP (он по умолчанию). И для того чтобы можно было подключиться к приложению извне нужно запустить еще одно приложение (Ingress Controller) и уже к нему Service типа LoadBalancer (и привязать к нему все доменные имена). Чтобы Ingress Controller мог правильно связать доменное имя приложение (подключиться к сервису типа ClusterIP) необходимо задать правила (Ingress rules).
+
+![image-20231014102839841](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014102839841.png)
+
+Ingress Controllers их уже очень много создано и [можно выбирать любой под свои нужды](https://docs.google.com/spreadsheets/d/191WWNpjJ2za6-nbG4ZoUMXMpUK8KlCIosvQB0f-oq3k/edit#gid=907731238). 
+
+Будем использовать Contour
+
+Для этого (команда из его докуменации):
+
+`$kubectl apply -f https://projectcontour.io/quickstart/contour.yaml`
+
+После запуска этой команды запустится процесс, который не будет видно из текущего NameSpace. Но посмотреть можно:
+
+![image-20231014103855298](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014103855298.png)
+
+Как видно, дополнительно, создался Service типа LoadBalancer (его так же можно увидеть в YandexCloud)
+
+Создал зону в CloudDNS и в ней 3 записи ссылающиеся на ExternalIP LoadBalancer.
+
+![image-20231014105352176](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014105352176.png)
+
+Deployment сделаем командами
+
+`$kubectl create deployment main --image=nginx:latest`
+
+![image-20231014110436776](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014110436776.png)
+
+Сделаем количесво реплик равное 2 половине приложений.
+
+`$kubectl scale deployment main --replicas 2`
+
+![image-20231014111121213](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014111121213.png)
+
+Созание Services типа ClusterIP (т.е можно не указывать тип, он по умолчанию)
+
+`$kubectl expose deployment web3 --port=80`
+
+Чтобы увидеть немного больше `-o wide`
+
+![image-20231014111655817](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014111655817.png)
+
+### Написание манифеста для Ingress rule
+
+
+
+Каждый путь в ингрессе должен иметь соответствующий тип пути. Пути, не содержащие явного типа пути (pathType), не пройдут проверку. Существует три поддерживаемых типа путей:
+
+- **ImplementationSpecific**: При использовании этого типа пути соответствие зависит от класса IngressClass. Реализации могут рассматривать его как отдельный тип пути или рассматривать его идентично типам пути Prefix или Exact.
+
+- **Exact**: Точное соответствие пути URL с учетом регистра.
+
+- **Prefix**: Сопоставление осуществляется на основе префикса пути URL, разделенного символом /. Сопоставление чувствительно к регистру и осуществляется по элементам пути. Под элементом пути понимается список меток в пути, разделенный разделителем /. Запрос совпадает с путем p, если каждый p является элементарным префиксом p пути запроса.
+
 
 
