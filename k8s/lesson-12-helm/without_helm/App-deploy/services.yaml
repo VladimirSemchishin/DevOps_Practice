@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: my-single-pod-service
+  labels:
+    env: prod
+    owner: SemchishinVladimir
+
+spec:
+  type: LoadBalancer              #тип ресурса service
+  
+  selector:                       #на какие pods, service будет работать
+    project: smvn                 #выбираем pods с этими ключ-значениями 
+
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 80                    #Порт на LoadBalancer
+      targetPort: 80              #Порт на pod
+  
+        
