@@ -1,0 +1,83 @@
+apiVersion: apps/v1                #версия API Kubernetes
+kind: Deployment                   #тип создаваемого объекта
+metadata:                          #данные, позволяющие идентифицировать объект 
+  name: deployment-nginx           #имя
+  labels:                          #метки
+    owner: SemchishinVladimir
+    app: nginx 
+spec:                              #описывают требуемое состояние объекта deployment
+  selector:                        #указываю с какими подами Deployment будет работать
+    matchLabels:                   #искать поды он будет по ключ-значению
+      project: nginx-mindbox
+  template:                        #описываю под
+    metadata:                      #данные для идентификации пода
+      labels:                      #указываю метку в виде ключ значения как в selector
+        project: nginx-mindbox
+    spec:                          #описываю требуемое состояние пода
+      containers:                  #в поде будет 1 контейнер. Тк. 1 под - 1 контейнер 
+        - name: web-nginx-mindbox  #имя контейнера
+          image: nginx:latest      #образ контейнера
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              memory: "200Mi" 
+          ports:                    #порт
+            - containerPort: 80
+          
+          livenessProbe:            #Это TCP liveness проба. Если удастся установить соединение - контейнер здоров, если нет - перезагрузка
+            tcpSocket:
+              port: 80              #Kubelet будет пытаться открыть этот порт
+            initialDelaySeconds: 5  #Первая проба будет через 5 секунд (тк. для инициализации нужно 5-10)
+            periodSeconds: 3        #Проверки каждые 5 секунд
+            failureThreshold: 2     #Количество проверок перед тем как сдаться (и того если через 11 секунд контейнер не запуститься, он перезагрузится) 
+          
+          readinessProbe:           #Это TCP readiness проба. Если не удастся установить соединение - удаление контейнера
+            tcpSocket:
+              port: 80              
+            initialDelaySeconds: 15 
+            periodSeconds: 20               
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: autoscale-nginx
+  labels:
+    owner: SemchishinVladimir
+    app: nginx
+
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deployment-nginx
+  minReplicas: 1                    #минимальное кол-во подов
+  maxReplicas: 5                    #максимальное кол-во подов. Тк. 4 пода справляются с пиковой нагрузкой
+  metrics:                          #
+    - type: Resource       
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 110  #когда потребление vCPU приблизится к запрошенному количеству на 80% (0.1*0.8 = 0.08 vCPU) создастся доп. pod
+      
+
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: autoscaling-pod-service-nginx
+  labels:
+    owner: SemchishinVladimir
+    app: nginx
+spec: 
+  type: LoadBalancer
+  selector: 
+    project: nginx-mindbox
+  ports:
+    - name: nginx-listener
+      protocol: TCP
+      port: 80
+      targetPort: 80

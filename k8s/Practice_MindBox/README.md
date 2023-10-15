@@ -19,3 +19,53 @@
 - хотим минимального потребления ресурсов от этого deployment’а
 
 ***
+
+
+
+# MindBox решение.
+
+## Подготовка
+
+Смоделирую ситуацию для решения задания. 
+
+Создам мультинациональный cluster в котором будут 4 nodes: **multi-zone-cluster**
+
+В Yandex Cloud чтобы nodes создавались распределенно в трех подсетях в каждой зоне доступности, необходимо указать что cluster будет "региональным".
+
+![image-20231015095948773](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015095948773.png)
+
+Далее в этом cluster создам группу узлов и укажу что их необходимо распределить по разным зонам
+
+Cluster:
+
+![image-20231015101525170](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015101525170.png)
+
+Nodes:
+
+![image-20231015101609258](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015101609258.png)
+
+Как видно 5 nodes распределены по 3 зонам доступности.
+
+Теперь инициализирую кластер на своем ПК, чтобы учетные данные попали файл конфигурации и мой kubeсtl мог общаться с кластером.
+
+`$yc managed-kubernetes cluster get-credentials multi-zone-cluster --external`
+
+![image-20231015101944053](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015101944053.png)
+
+Все работает.
+
+## Создание манифестов
+
+### Deployment
+
+![image-20231015104532908](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015104532908.png)
+
+Описал Deployment, который будет работать с pods у которых есть метка (project: nginx-mindbox). В свою очередь на этом поде контейнер на основе образа nginx:latest
+
+Проверка:
+
+![image-20231015104804722](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015104804722.png)
+
+Как видно deployment выполнился (имя deployment-nginx) и создалcя pod 
+
+### Service

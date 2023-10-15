@@ -1,0 +1,27 @@
+apiVersion: autoscaling/v2          #версия API Kubernetes
+kind: HorizontalPodAutoscaler       #тип создаваемого объекта
+metadata:                           #данные, позволяющие идентифицировать объект
+  name: autoscale-nginx             #имя
+  labels:                           #метки
+    owner: SemchishinVladimir
+    app: nginx
+spec:                               #описывают требуемое состояние объекта 
+  scaleTargetRef:                   #Что hpa будет масштабировать
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deployment-nginx
+  minReplicas: 1                    #минимальное кол-во подов
+  maxReplicas: 5                    #максимальное кол-во подов. Тк. 4 пода справляются с пиковой нагрузкой
+  metrics:                          #метрики на основании которых будет масштабирование 
+    - type: Resource       
+      resource:                     #отслеживаемый ресурс
+        name: cpu
+        target:                     #цель - использовать 110% от запрошенного значения
+          type: Utilization
+          averageUtilization: 110  #когда потребление vCPU превысит запрошенное количество на 10% (0.1*1.1 = 0.11 vCPU) создастся доп. pod
+    - type: Resource       
+      resource:                     #отслеживаемый ресурс
+        name: memory
+        target:                     #цель - использовать 110% от запрошенного значения
+          type: Utilization
+          averageUtilization: 110   #когда потребление vCPU превысит запрошенное количество на 10% (128*1.1 = 140 vCPU) создастся доп. pod 
