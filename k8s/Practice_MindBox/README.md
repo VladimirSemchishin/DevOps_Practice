@@ -32,7 +32,7 @@
 
 В Yandex Cloud чтобы nodes создавались распределенно в трех подсетях в каждой зоне доступности, необходимо указать что cluster будет "региональным".
 
-![image-20231015095948773](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231015095948773.png)
+![image-20231015095948773](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/For_photo/image-20231015095948773.png)
 
 Далее в этом cluster создам группу узлов и укажу что их необходимо распределить по разным зонам
 
