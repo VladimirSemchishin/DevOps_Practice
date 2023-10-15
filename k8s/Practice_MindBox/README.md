@@ -26,15 +26,18 @@
 
 Я выполнил задачу в 2 вариантах
 1. Единый манифест: [ссылка на единый манифест](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/k8s/Practice_MindBox/one-file-deploy-hpa-svc.yaml "one-file-deploy-hpa-svc.yaml")
-2. [ссылка на Chart](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/Practice_MindBox/Charm-Multi "Charm-Multi")
+2. [Ссылка на Chart](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/Practice_MindBox/Charm-Multi "Charm-Multi")
+
 Отличие второго решения от первого:
 - Есть возможность запустить приложение через Helm
 - Прописаны переменные в файле [ссылка на values.yaml](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/k8s/Practice_MindBox/Charm-Multi/values.yaml "values.yaml"), в том числе переменная для имени проекта.
 - Код расписан по соответвующим документам, что упрощает последующую модернизацию.
+
 ## Общий комментарий по решению задачи
 Написал манифест, который разворчивает мультизональный кластер через k8s. Для практики я использовал провайдерв YandexCloud.
 Там я создал мультизональный cluster, группу nodes, соответсвенно с 5 nodes  
 ![image](https://github.com/VladimirSemchishin/DevOps_Practice/assets/84544412/ae85925e-8052-4bc8-9c29-3305c74bc593)
+
 ### Реализация Deployment
 Кратко по самому важному
 - Использовал образ nginx:latest
