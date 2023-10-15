@@ -17,12 +17,12 @@ spec:                              #описывают требуемое сос
       containers:                  #в поде будет 1 контейнер. Тк. 1 под - 1 контейнер 
         - name: web-nginx-mindbox  #имя контейнера
           image: nginx:latest      #образ контейнера
-          resources:
-            requests:
+          resources:               #описание ресурсов
+            requests:              #запрашиваемые подом
               cpu: "100m"
               memory: "128Mi"
-            limits:
-              memory: "200Mi" 
+            limits:                #лимит по ресурсам. Лимита по vCPU нету, тк на первые запросы приложению требуется значительно больше ресурсов 
+              memory: "140Mi" 
           ports:                    #порт
             - containerPort: 80
           
@@ -37,7 +37,8 @@ spec:                              #описывают требуемое сос
             tcpSocket:
               port: 80              
             initialDelaySeconds: 15 
-            periodSeconds: 20               
+            periodSeconds: 20      
+
 
 ---
 apiVersion: autoscaling/v2

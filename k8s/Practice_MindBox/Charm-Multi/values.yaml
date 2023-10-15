@@ -1,0 +1,16 @@
+#####DEPLOYMENT#####
+
+container:
+  image: nginx:latest
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      memory: "200Mi"
+
+
+#####HPA#####
+
+minReplicas: 1
+maxReplicas: 5 

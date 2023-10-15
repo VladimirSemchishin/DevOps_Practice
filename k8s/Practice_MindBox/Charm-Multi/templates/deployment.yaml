@@ -1,44 +1,40 @@
-apiVersion: apps/v1                #версия API Kubernetes
-kind: Deployment                   #тип создаваемого объекта
-metadata:                          #данные, позволяющие идентифицировать объект 
-  name: deployment-nginx           #имя
-  labels:                          #метки
+apiVersion: apps/v1                 #версия API Kubernetes
+kind: Deployment                    #тип создаваемого объекта
+metadata:                           #данные, позволяющие идентифицировать объект 
+  name: "{{ .Release.Name }}-nginx" #имя
+  labels:                           #метки
     owner: SemchishinVladimir
-    app: nginx 
-spec:                              #описывают требуемое состояние объекта deployment
-  selector:                        #указываю с какими подами Deployment будет работать
-    matchLabels:                   #искать поды он будет по ключ-значению
-      project: nginx-mindbox
-  template:                        #описываю под
-    metadata:                      #данные для идентификации пода
-      labels:                      #указываю метку в виде ключ значения как в selector
-        project: nginx-mindbox
-    spec:                          #описываю требуемое состояние пода
-      containers:                  #в поде будет 1 контейнер. Тк. 1 под - 1 контейнер 
-        - name: web-nginx-mindbox  #имя контейнера
-          image: nginx:latest      #образ контейнера
-          resources:               #описание ресурсов
-            requests:              #запрашиваемые подом
-              cpu: "100m"
-              memory: "128Mi"
-            limits:                #лимит по ресурсам. Лимита по vCPU нету, тк на первые запросы приложению требуется значительно больше ресурсов 
-              memory: "140Mi" 
-          ports:                    #порт
+    app: "{{ .Release.Name }}-nginx" 
+spec:                               #описывают требуемое состояние объекта deployment
+  selector:                         #указываю с какими подами Deployment будет работать
+    matchLabels:                    #искать поды он будет по ключ-значению
+      project: {{ .Release.Name }} 
+  template:                         #описываю под
+    metadata:                       #данные для идентификации пода
+      labels:                       #указываю метку в виде ключ значения как в selector
+        project: {{ .Release.Name }}
+    spec:                           #описываю требуемое состояние пода
+      containers:                   #в поде будет 1 контейнер. Тк. 1 под - 1 контейнер 
+        - name: "{{ .Release.Name }}-web"        #имя контейнера
+          image: {{ .Values.container.image }}   #образ контейнера
+          resources:
+            requests:
+              cpu: {{ .Values.container.resources.requests.cpu }}
+              memory: {{ .Values.container.resources.requests.memory }}
+            limits:
+              memory: {{ .Values.container.resources.limits.memory }} 
+          ports:                     #порт
             - containerPort: 80
           
-          livenessProbe:            #Это TCP liveness проба. Если удастся установить соединение - контейнер здоров, если нет - перезагрузка
+          livenessProbe:             #Это TCP liveness проба. Если удастся установить соединение - контейнер здоров, если нет - перезагрузка
             tcpSocket:
-              port: 80              #Kubelet будет пытаться открыть этот порт
-            initialDelaySeconds: 5  #Первая проба будет через 5 секунд (тк. для инициализации нужно 5-10)
-            periodSeconds: 3        #Проверки каждые 5 секунд
-            failureThreshold: 2     #Количество проверок перед тем как сдаться (и того если через 11 секунд контейнер не запуститься, он перезагрузится) 
-          
-          readinessProbe:           #Это TCP readiness проба. Если не удастся установить соединение - удаление контейнера
-            tcpSocket:
-              port: 80              
-            initialDelaySeconds: 15 
-            periodSeconds: 20      
-
-
-      
-    
+              port: 80               #Kubelet будет пытаться открыть этот порт
+            initialDelaySeconds: 5   #Первая проба будет через 5 секунд (тк. для инициализации нужно 5-10)
+            periodSeconds: 3         #Проверки каждые 5 секунд
+            failureThreshold: 2      #Количество проверок перед тем как сдаться (и того если через 11 секунд контейнер не запуститься, он перезагрузится) 
+           
+          readinessProbe:            #Это TCP readiness проба. Если не удастся установить соединение - удаление контейнера
+            tcpSocket: 
+              port: 80               
+            initialDelaySeconds: 15  
+            periodSeconds: 20  

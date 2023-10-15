@@ -1,16 +1,16 @@
 apiVersion: v1                         #используемая для создания объекта версия API Kubernetes
 kind: Service                          #что создаю (тип объекта)
 metadata:                              #данные, позволяющие идентифицировать объект
-  name: utoscaling-pod-service-nginx
+  name: "{{ .Release.Name }}-nginx"
   labels:
     owner: SemchishinVladimir
     app: nginx
 spec:                                  #описывают требуемое состояние объекта Service
   type: LoadBalancer                   #определение типа Service
   selector:                            #на какие pods, service будет работать
-    project: nginx-mindbox             #метки в формате ключ значение для эти подов
+    project: {{ .Release.Name }}             #метки в формате ключ значение для эти подов
   ports:
-    - name: nginx-listener
+    - name: "{{ .Release.Name }}-listener"
       protocol: TCP
       port: 80                        #port on LoadBalancer
       targetPort: 80                  #port on pod
