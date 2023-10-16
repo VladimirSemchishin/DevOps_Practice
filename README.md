@@ -15,9 +15,9 @@
 
      - Упаковал [helloworld.py](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker/DokerfilePY/helloworld.py) в контейнер, результат записал в [index.html](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker/DokerfilePY/index.html) и развернул его на web страничке. [Dockerfile](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker/DokerfilePY/Dockerfile)
 
-     - ### [Сompose](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker_start/10-4-live/docker-compose.yml)
+     -  [Сompose](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker_start/10-4-live/docker-compose.yml)
 
-     - ### [Dockerfile-multistage](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker_start/10-5-live/multi-stage-live/hello-docker/Dockerfile)
+     -  [Dockerfile-multistage](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Docker_start/10-5-live/multi-stage-live/hello-docker/Dockerfile)
 
      - [Облегчение образа](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/Docker_start/10-5-live/optinization-live)
 
@@ -29,15 +29,15 @@
 
    - Практика
 
-     - ### [Pods](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-8-pods)
+     -  [Pods](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-8-pods)
 
-     - ### [Deployments](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-9-Deployments)
+     -  [Deployments](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-9-Deployments)
 
-     - ### [Services](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-10-Services)
+     -  [Services](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-10-Services)
 
-     - ### [Ingress](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-11-ingress)
+     -  [Ingress](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-11-ingress)
 
-     - ### [Helm](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-12-helm)
+     -  [Helm](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/edy-k8s/lesson-12-helm)
 
    - [Задание](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/k8s/Practice_MindBox)
 
