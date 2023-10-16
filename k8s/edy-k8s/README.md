@@ -32,7 +32,7 @@
 
 **$ minikube start** - cоздался конфигурационный файл ~/.kube и все сертификаты и тд. в файле ~/.minikube
 
-![image-20231011144602569](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011144602569.png)
+![image-20231011144602569](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011144602569.png)
 
 Проверка работы кластера: `$kubectl get componentstatuses`
 
