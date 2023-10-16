@@ -8,13 +8,13 @@
 
 `uname` - инструмент, который чаще всего используется для определения архитектуры процессора, имени хоста системы и версии ядра, работающего в системе.
 
-![image-20230912072629214](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912072629214.png)
+![image-20230912072629214](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912072629214.png)
 
 `uname -a` тоже самое, только с флагом `all`
 
 `lscpu` - выведет информацию о архитектуре процессора
 
-![image-20230912072841732](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912072841732.png)
+![image-20230912072841732](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912072841732.png)
 
 ### Переменные в ОС
 
@@ -22,18 +22,18 @@
 
 Команды ищутся в `$PATH`, чтобы посмотреть в каких директориях лежат уже забитые переменные: `$echo $PATH` 
 
-![image-20230912072354447](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912072354447.png)
+![image-20230912072354447](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912072354447.png)
 
 Чтобы добавить новый путь нужно использовать `export` 
 
-![image-20230919074046432](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230919074046432.png)
+![image-20230919074046432](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230919074046432.png)
 
 Это будет работать до первой перезагрузки, чтобы полностью сохранить изменения, можно:
 
 -  изменить значение переменной `PATH` в файле `/etc/environment` (для убунту)
 - изменить скрипт запуска оболочки bash (`$vi ~/.bashrc`) - прописать в конце export `PATH=$PATH:/opt/local/bin`
 
-![image-20230919074910965](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230919074910965.png)
+![image-20230919074910965](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230919074910965.png)
 
 
 
@@ -45,23 +45,23 @@
 
 `man -k clear` - (k это keyword) man - читать мануал по какой то команде кратко. 
 
-![image-20230912074613080](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912074613080.png)
+![image-20230912074613080](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912074613080.png)
 
 `man clear` читать полный мануал по команде. чтобы искать нужно в открытом файле через консоль /'то что нужно найти'
 
 `whatis uptime` - то же что и man -k
 
-![image-20230912074835744](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912074835744.png)
+![image-20230912074835744](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912074835744.png)
 
 `whereis` uptime - найти расположение команды
 
-![image-20230912074906134](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912074906134.png)
+![image-20230912074906134](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912074906134.png)
 
 `locate uptime` - найти файл с таким именем 
 
 `ping ww.google.com` - проверить доступ этого сайта
 
-![image-20230912075148343](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912075148343.png)
+![image-20230912075148343](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912075148343.png)
 
 `ctrl + c` - убить и выйти из процесса
 
@@ -69,23 +69,23 @@
 
 `ps` - посмотреть какие процессы бегут в сеансе на момент вып. команды (тк исп ctrl + z для скрытия ping он выведен как бегущий процесс)
 
-![image-20230912075243370](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912075243370.png)
+![image-20230912075243370](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912075243370.png)
 
 `fg` - вернуться на бегущий процесс ( вернул отображение запущенного ping)
 
-![image-20230912075348038](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912075348038.png)
+![image-20230912075348038](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912075348038.png)
 
 ## Навигация по Файлам и Директориям
 
 В линуксе есть только `/`  - это самая корневая директория ($cd / $ls -la)
 
-![image-20230912081728313](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912081728313.png)
+![image-20230912081728313](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912081728313.png)
 
 `ls -la` - (l - longa, a -all ) - покажет подробную информацию о файлах и папках текщей директории  (в том числе скрытых)
 
 `pwd` - print working directory 
 
-![image-20230912082526136](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912082526136.png)
+![image-20230912082526136](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912082526136.png)
 
 `cd` - перейти (`..` - вернуться на 1 директорию, `../..` - вернуться на 2 директории, `/` - в корень, без всего или `~` - домашняя директория пользователя)
 
@@ -105,7 +105,7 @@
 
 `cp src dest -v`- копировать (что куда) флаг -v покажет куда они копируются
 
-![image-20230912090037082](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912090037082.png)
+![image-20230912090037082](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912090037082.png)
 
 `?`  -  это один любой знак, `*` - это любое количество любых знаков
 
@@ -113,13 +113,13 @@
 
 `cp dir2 NewDir -v -r`
 
-![image-20230912090637388](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912090637388.png)
+![image-20230912090637388](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912090637388.png)
 
 ### Переименование
 
 `mv file .file -v` - переименовать (. перед названием делает файл невидимым) 
 
-![image-20230912090909482](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912090909482.png)
+![image-20230912090909482](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912090909482.png)
 
 ## Работа с директориями
 
@@ -127,7 +127,7 @@
 
 `mkdir -p dir3/dir4/dir5` - создает путь и конечную директорию
 
-![image-20230912091254659](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912091254659.png)
+![image-20230912091254659](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912091254659.png)
 
 ### Переименование 
 
@@ -151,7 +151,7 @@
 
 `ln -s src NameLink` - нужно указать путь до файла или папки и имя которое будет у линка (то есть папки которая при переходе на нее перенесет вас по указанному пути) -s (sympolic)
 
-![image-20230912093709877](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912093709877.png)
+![image-20230912093709877](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912093709877.png)
 
 ### Дубликат линоков (только для файлов)
 
@@ -159,39 +159,39 @@
 
 видно что вывод записался в дубликат, но и в оригинале он есть
 
-![image-20230912094615500](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912094615500.png)
+![image-20230912094615500](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912094615500.png)
 
 ##  Команды find, cut, sort, wc
 
 `find src -name "что искать"` - поиск, сначала нужно указать где искать, потом через флаг -name "что искать" 
 
-![image-20230912095046396](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912095046396.png)
+![image-20230912095046396](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912095046396.png)
 
 `wc file.txt` - распечатать сколько в файле строк, слов и байт (-l только строк, -w только слов)
 
-![image-20230912095558369](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912095558369.png)
+![image-20230912095558369](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912095558369.png)
 
 `sort file.txt` - сортирует файл (-n сортировать по номерам)
 
-![image-20230912100051092](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912100051092.png)
+![image-20230912100051092](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912100051092.png)
 
 `cut -d "<" -f 2 linux-history_dublicate.txt` - если в файле есть разделение по какому то элементу, то можно вывести только часть файла -d (--delimiter=DELIM) -f (--fields=LIST) и указать в каком файле
 
-![image-20230912100837365](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912100837365.png)
+![image-20230912100837365](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912100837365.png)
 
 `|` - это pipe, после него можно записать команду для выполнения (получится конвеер)
 
-![image-20230912101039463](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912101039463.png)
+![image-20230912101039463](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912101039463.png)
 
 ## Команда grep и Регулярные Выражения
 
 `grep Linux ./*` - поиск по файлам, что искать (Linux) где искать (./* текущая директория все)
 
-![image-20230912101657113](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912101657113.png)
+![image-20230912101657113](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912101657113.png)
 
 `grep linux ./* -i` - доп флаг это игнорировать заглавные буквы  
 
-![image-20230912102110794](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912102110794.png)
+![image-20230912102110794](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912102110794.png)
 
 ### Регулярные выражения 
 
@@ -207,9 +207,9 @@
 
 `grep -E"[A-Za-z\.]*@[A-Za-z].gov" mydatfile.txt` - указываем что перед @ могут быть любые буквы в том числе точки (точка обозначается так \.)
 
-![image-20230912103039131](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912103039131.png)
+![image-20230912103039131](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912103039131.png)
 
-![image-20230912103820429](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912103820429.png)
+![image-20230912103820429](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912103820429.png)
 
 Если нужна почта не только .gov: `grep -E"[A-Za-z\.]*@[A-Za-z].(gov|mail)" mydatfile.txt`
 
@@ -219,11 +219,11 @@
 
 `sort linux-history.txt > sort_linux-history.txt` - если файла не было он создастся и в него запишется вывод, если файл уже существовал, то то что внутри перезапишется.
 
-![image-20230912104221933](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912104221933.png)
+![image-20230912104221933](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912104221933.png)
 
 `sort -n nymeric >> sort_linux-history.txt` -  добавление в конец файла
 
-![image-20230912104740499](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912104740499.png)
+![image-20230912104740499](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912104740499.png)
 
 Если сделать такую команду: `sort -n nymeric > nymeric` файл не станет сортированным, потому что тот файл в который будет записан вывод, сначала создается (пустым, тк в нем будет только вывод команды), а потом записывается команда, но т.к команда сортировки будет обращаться к пересозданному новому файлу, сортировать уже будет нечего.
 
@@ -231,7 +231,7 @@
 
 `grep smvn /etc/* 2> errors.txt` - перенаправит ошибки в файл с ошибками, а хорошие ответы выдаст в консоль
 
-![image-20230912110149526](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230912110149526.png)
+![image-20230912110149526](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230912110149526.png)
 
 `grep smvn /etc/* > good.txt 2> /dev/null` - перенаправление  хороших ответов в файл good, а ошибок в error
 
@@ -243,7 +243,7 @@
 
 `tar cf mytar.tar Folder1` команда для архивирования, объединяет несколько файлов в один файл. (c - create; f - file ) f всегда должен быть последним, mytar.tar название файла архива, Folder1 - что будет лежать в архиве. Можно добавить -v чтоюы видеть что изменилось
 
-![image-20230913104247050](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230913104247050.png)
+![image-20230913104247050](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230913104247050.png)
 
  `tar tf mytar.tar` - просмотр архива (t - test)
 
@@ -269,7 +269,7 @@
 
 `tar cjf myBZIP.bz Folder1` - создание сразу сжатого архива .bz (нужно j)
 
-![image-20230913110044217](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230913110044217.png)
+![image-20230913110044217](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230913110044217.png)
 
 Распаковка сжатых файлов такая же как и просто архив.
 
@@ -283,15 +283,15 @@
 
 `top` - менеджер задач (task) в линукс (shift+p - отсортировать по cpu shift+m - отсортировать по памяти)
 
-![image-20230914070521771](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914070521771.png)
+![image-20230914070521771](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914070521771.png)
 
 `free -h` - посмотреть память -h (humon) в человеческом виде
 
-![image-20230914072005708](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914072005708.png)
+![image-20230914072005708](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914072005708.png)
 
 `ps` - посмотреть запущенные процессы (у него 3 флага -u указать юзера, -a все(all), -x детальнее и вместе с процессами команд запущенных в этой сессии)
 
-![image-20230914072040756](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914072040756.png)
+![image-20230914072040756](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914072040756.png)
 
 Все лог файлы хранятся в директории `/var/log`
 
@@ -309,37 +309,37 @@
 
 `/etc/passwd` - файл в котором прописаны все пользователи (в том числе системные)
 
-![image-20230914074537768](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914074537768.png)![image-20230914074553238](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914074553238.png)
+![image-20230914074537768](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914074537768.png)![image-20230914074553238](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914074553238.png)
 
 `/etc/shadow` - тут лежат пароли
 
-![image-20230914074938168](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914074938168.png)
+![image-20230914074938168](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914074938168.png)
 
-![image-20230914074950087](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914074950087.png)
+![image-20230914074950087](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914074950087.png)
 
 `/etc/group` - список групп и кто в них находится
 
-![image-20230914075205455](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914075205455.png)
+![image-20230914075205455](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914075205455.png)
 
 `whoami` - узнать имя текуще пользователя
 
-![image-20230914075312421](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914075312421.png)
+![image-20230914075312421](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914075312421.png)
 
 id - узнать id изера грппы и тех группы к которым юзер принадлежит
 
-![image-20230914075448661](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914075448661.png)
+![image-20230914075448661](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914075448661.png)
 
 `last` - выдаст кто делал и когда log in  
 
-![image-20230914075618495](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914075618495.png)
+![image-20230914075618495](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914075618495.png)
 
 `who` - какой юзер сейчас активен
 
-![image-20230914075804901](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914075804901.png)
+![image-20230914075804901](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914075804901.png)
 
 `w` - тоже самое что who только больше информации (чем занят юзер)
 
-![image-20230914075915993](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914075915993.png)
+![image-20230914075915993](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914075915993.png)
 
 ## Пользователи и Группы
 
@@ -347,21 +347,21 @@ id - узнать id изера грппы и тех группы к котор�
 
 `sudo useradd -m  user1` - создание пользователя (m создать home directory) 
 
-![image-20230914081925993](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914081925993.png)
+![image-20230914081925993](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914081925993.png)
 
-![image-20230914081939096](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914081939096.png)
+![image-20230914081939096](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914081939096.png)
 
 Но у этогго пользователя нет пароля,об этом говорит файл etc/shadow, в него нельзя залогиниться
 
-![image-20230914082129514](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914082129514.png)
+![image-20230914082129514](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914082129514.png)
 
 `sudo passwd user1` - задать пароль юзеру
 
-![image-20230914082235883](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914082235883.png)
+![image-20230914082235883](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914082235883.png)
 
 И в  etc/shadow появился пароль
 
-![image-20230914082315618](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914082315618.png)
+![image-20230914082315618](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914082315618.png)
 
 Когда создается пользователь, на основе создающего юзера создается скелет (копируется)
 
@@ -369,33 +369,33 @@ id - узнать id изера грппы и тех группы к котор�
 
 `sudo userdel user1` - чтобы удалить только директорию user1, чтобы удалить все что связано, нужно удалить внутренние файлы и директории этого юзера, исп -r 
 
-![image-20230914083732714](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914083732714.png)
+![image-20230914083732714](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914083732714.png)
 
 `sudo groupadd Programmers` - создание группы (проверить в файле ../../etc/group)
 
-![image-20230914084019578](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914084019578.png)
+![image-20230914084019578](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914084019578.png)
 
 `sudo groupdel Programmers` - удалить группу
 
 `sudo usermod -aG Programmers user2` - добавить изера в группу (a - append) 
 
-![image-20230914084543448](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914084543448.png)
+![image-20230914084543448](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914084543448.png)
 
-![image-20230914084527469](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914084527469.png)
+![image-20230914084527469](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914084527469.png)
 
-![image-20230914084458905](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914084458905.png)
+![image-20230914084458905](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914084458905.png)
 
 Можно добавлять в группу и через цифру
 
-![image-20230914084824620](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914084824620.png)
+![image-20230914084824620](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914084824620.png)
 
 `sudo deluser user2 sudo` - убрать из группы
 
-![image-20230914085120068](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914085120068.png)
+![image-20230914085120068](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914085120068.png)
 
 ## Права Доступа и владения файлами и директориями
 
-![image-20230914090254471](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914090254471.png)
+![image-20230914090254471](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914090254471.png)
 
 Первый параметр - это указание прав на объект ( - --- --- --- )
 
@@ -407,43 +407,43 @@ id - узнать id изера грппы и тех группы к котор�
 
 `sudo chown user2 link_text1` - поменять владельца (change owner) (его права rw-)
 
-![image-20230914090412256](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914090412256.png)
+![image-20230914090412256](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914090412256.png)
 
 изменился файл, на который ссылается link (т.е. text1)
 
 `sudo chgrp Pogrammers text1` - изменить группу (их права rw-)
 
-![image-20230914090948602](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914090948602.png)
+![image-20230914090948602](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914090948602.png)
 
 `sudo chmod o+x taxt1` - изменить права буквами (o - others x - execute)
 
-![image-20230914091410617](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914091410617.png)
+![image-20230914091410617](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914091410617.png)
 
 `sudo chmod u-w,g-w text1` - пример как убрать у нескольких
 
 Можно изменять права цифрами
 
-![image-20230914091636782](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914091636782.png)
+![image-20230914091636782](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914091636782.png)
 
 `sudo chmod 777 text1` - (первая цифра это user)
 
-![image-20230914092439065](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914092439065.png)
+![image-20230914092439065](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914092439065.png)
 
 ### sticky bit
 
 В директории в которой все могут делать все, есть файлы, к которым закрыт доступ текущему пользователю он не может даже прочесть ничего
 
-![image-20230914092843346](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914092843346.png)
+![image-20230914092843346](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914092843346.png)
 
 Но поскольку директория разрешает делать все всем (ее права 777), любой может удалить файл который даже просмотреть не может
 
-![image-20230914093003271](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914093003271.png)
+![image-20230914093003271](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914093003271.png)
 
 Чтобы такого небыло, а управлять файлами мог только тот у кого есть права, директории для остальных можно дать право sticky bit (`o+t`) или через цифру (`0777` - 0 это убрать  `1777` - 1 это добавить)
 
 `sudo chmod o+t Folder1` - дать наследование прав от файлов
 
-![image-20230914093314222](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914093314222.png)
+![image-20230914093314222](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914093314222.png)
 
 ## Сетевые комманды
 
@@ -451,29 +451,29 @@ id - узнать id изера грппы и тех группы к котор�
 
 `ip addr` - узнать ip адресс вм
 
-![image-20230914102713725](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914102713725.png)
+![image-20230914102713725](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914102713725.png)
 
 Показывает что есть 3 сетевых устройства и информацию о них
 
 `ip route` - запись в таблице маршрутизации (можно добавить в конце show)
 
-![image-20230914134555512](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914134555512.png)
+![image-20230914134555512](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914134555512.png)
 
 `ping -c 4 8.8.8.8` - команда пинг (адресс указа гугла www.google.com) флаг -c указвает сколько раз нужно обратиться на этот адрес (4 раза)
 
-![image-20230914135048037](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914135048037.png)
+![image-20230914135048037](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914135048037.png)
 
 `host` - вернет ip имени хоста
 
-![image-20230914135340334](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914135340334.png)
+![image-20230914135340334](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914135340334.png)
 
 `dig www.microsoft.com` - domain information groper, выведет информацию о домене
 
-![image-20230914140348856](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914140348856.png)
+![image-20230914140348856](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914140348856.png)
 
 `netstat` - показывает статистику приема и отправки пакетов, а также информацию об ошибках приема и отправки
 
-![image-20230914141052018](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914141052018.png)
+![image-20230914141052018](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914141052018.png)
 
 ## Скачивание и Установка программ
 
@@ -485,11 +485,11 @@ id - узнать id изера грппы и тех группы к котор�
 
 `whereis chromium-bsu` - чтобы узнать куда установился пакет 
 
-![image-20230914144331864](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914144331864.png)
+![image-20230914144331864](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914144331864.png)
 
 `sudo apt-get remove chromium-bsu` - удалить пакет
 
-![image-20230914144627731](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914144627731.png)
+![image-20230914144627731](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914144627731.png)
 
 Линукс знает где искать данный пакет по имени, потому что у него прописаны repository в файле 
 
@@ -533,17 +533,17 @@ id - узнать id изера грппы и тех группы к котор�
 
 `#!/bin/bash` - указывает какого вида скрипт
 
-![image-20230914155328402](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914155328402.png)
+![image-20230914155328402](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914155328402.png)
 
 Файлу скрипту всегда нужно дать права на исполенение (x - execute). Но можно и не давать, тогда при запуске нужно указать (компилятор) `bash ./script1.sh`
 
-![image-20230914155044525](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914155044525.png)
+![image-20230914155044525](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914155044525.png)
 
 Чтобы запустить скрипт: `./script1.sh` то есть просто указать какой файл в данной директории.
 
 Результат:
 
-![image-20230914155630676](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914155630676.png)
+![image-20230914155630676](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914155630676.png)
 
 **script2.sh**
 
@@ -553,11 +553,11 @@ id - узнать id изера грппы и тех группы к котор�
 
 Для обращения к переменной в начале ее имени нужно указать `$name`  
 
-![image-20230914162518387](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914162518387.png)
+![image-20230914162518387](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914162518387.png)
 
 Результат
 
-![image-20230914161149698](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914161149698.png)
+![image-20230914161149698](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914161149698.png)
 
 Вообще `$0 = ./script2.sh`   `$1 = VOLODIMIR`  `$2 = SEMCHISHIN`
 
@@ -575,7 +575,7 @@ id - узнать id изера грппы и тех группы к котор�
 
 `fi`
 
-![image-20230914165857868](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914165857868.png)
+![image-20230914165857868](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914165857868.png)
 
 Но условие можно зписать иначе:
 
@@ -593,7 +593,7 @@ id - узнать id изера грппы и тех группы к котор�
 
 Результат
 
-![image-20230914165800060](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914165800060.png)
+![image-20230914165800060](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914165800060.png)
 
 ### Циклы
 
@@ -613,37 +613,37 @@ id - узнать id изера грппы и тех группы к котор�
 
 `done` 
 
-![image-20230914171505370](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914171505370.png)
+![image-20230914171505370](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914171505370.png)
 
 Результат:
 
-![image-20230914170918742](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914170918742.png)
+![image-20230914170918742](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914170918742.png)
 
 ### Цикл for
 
 В данном случае кол-во итераций зависит от кол-ва найденных .txt файлов
 
-![image-20230914172356211](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914172356211.png)
+![image-20230914172356211](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914172356211.png)
 
 Результат (вывелось то что хранилось в файлах .txt текущей директории)
 
-![image-20230914172433102](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914172433102.png)
+![image-20230914172433102](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914172433102.png)
 
 Ниже пример цикла `for` когда количество итераций задается интервалом: 
 
-![image-20230914172808454](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914172808454.png)
+![image-20230914172808454](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914172808454.png)
 
 Результат
 
-![image-20230914172832696](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914172832696.png)
+![image-20230914172832696](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914172832696.png)
 
 Еще одна запись, но в формате языков си:
 
-![image-20230914173109103](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914173109103.png)
+![image-20230914173109103](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914173109103.png)
 
 Результат
 
-![image-20230914173134862](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914173134862.png)
+![image-20230914173134862](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914173134862.png)
 
 ### Написание функции
 
@@ -661,11 +661,11 @@ id - узнать id изера грппы и тех группы к котор�
 
 `<name> ... ...` 
 
-![image-20230914174729419](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914174729419.png)
+![image-20230914174729419](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914174729419.png)
 
 Результат:
 
-![image-20230914174801187](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230914174801187.png)
+![image-20230914174801187](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230914174801187.png)
 
 ## КРАТКАЯ ВЫЖИМКА ПО systemd
 
@@ -680,7 +680,7 @@ Systemd запускает сервисы описанные в его конф�
 
 Юнит представляет из себя текстовый файл с форматом, похожим на файлы .ini Microsoft Windows.
 
-![image-20230915141520376](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20230915141520376.png)
+![image-20230915141520376](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20230915141520376.png)
 
 Для создания простейшего юнита надо описать три секции: [Unit], [Service], [Install]
 
