@@ -36,43 +36,43 @@
 
 Проверка работы кластера: `$kubectl get componentstatuses`
 
-![image-20231011143750939](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011143750939.png)
+![image-20231011143750939](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011143750939.png)
 
 Вывести информация по кластеру: `$kubectl cluster-info`
 
-![image-20231011143958591](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011143958591.png)
+![image-20231011143958591](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011143958591.png)
 
 Узнать из каких серверов состоит кластер: `$kubectl get nodes` 
 
-![image-20231011144048056](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011144048056.png)
+![image-20231011144048056](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011144048056.png)
 
 Остановка кластера: `$minikube stop`
 
-![image-20231011144238322](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011144238322.png)
+![image-20231011144238322](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011144238322.png)
 
 Удалить кластер: `$minikube delete` - можно было исп. и без остановки
 
-![image-20231011144325046](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011144325046.png)
+![image-20231011144325046](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011144325046.png)
 
 Параметры при создании кластера можно задавать: `$minikube start --cpus=2 --memory=1800MB --disk-size=2gb`
 
 Так же можно подлючиться к кластеру: `$minikube ssh`
 
-![image-20231011145717893](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011145717893.png)
+![image-20231011145717893](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011145717893.png)
 
 ## Создание Создание Docker Image, DockerHub, Запуск Docker Container
 
 ### Созднаие простого приложения на PHP
 
-![image-20231011153000697](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011153000697.png)
+![image-20231011153000697](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011153000697.png)
 
-![image-20231011153038246](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011153038246.png)
+![image-20231011153038246](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011153038246.png)
 
 ### Создание Dokerfile с Apache + PHP + наше приложение
 
-![image-20231011153057665](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011153057665.png)
+![image-20231011153057665](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011153057665.png)
 
-![image-20231011153117141](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011153117141.png)
+![image-20231011153117141](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011153117141.png)
 
 ### Создание Docker image из нашего Dokcerfile
 
@@ -80,7 +80,7 @@
 
 ### Создание Repository на Docker Hub
 
-![image-20231011153209865](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011153209865.png)
+![image-20231011153209865](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011153209865.png)
 
 ### Загрузка Docker Image в наш Repository на DockerHub
 
@@ -88,13 +88,13 @@
 
 `$docker tag myk8sapp:v1  dvd12/kubernetes:v1` - создастся дубликат первого image 
 
-![image-20231011154748881](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011154748881.png)
+![image-20231011154748881](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011154748881.png)
 
 Выгрузка в DockerHub: 
 
 `$docker push vd12/kubernetes:v1`
 
-![image-20231011155211761](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011155211761.png)
+![image-20231011155211761](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011155211761.png)
 
 ### Тестирование нашего Docker Image на DockerHub
 
@@ -152,7 +152,7 @@ Horizontal Pod Autoscaler
 
 Сервис дает доступ ко всему 
 
-![image-20231011164917676](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231011164917676.png)
+![image-20231011164917676](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231011164917676.png)
 
 ### Итог:
 
@@ -175,7 +175,7 @@ Horizontal Pod Autoscaler
 
 Что должно получиться 
 
-![image-20231012094226404](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012094226404.png)
+![image-20231012094226404](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012094226404.png)
 
 Я делаю через YC, для этого я зашел в свой кабинет и создал кластер и в нем 2 nodes. 
 
@@ -191,7 +191,7 @@ Horizontal Pod Autoscaler
 
 Итог:
 
-![image-20231012141348817](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012141348817.png)
+![image-20231012141348817](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012141348817.png)
 
 Запуск первого пода. Создадим image, из него контейнер, который будет бежать в поде.
 
@@ -207,19 +207,19 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 где hello - это имя пода, --image - образ (его он может взять с пк или dockerhub)
 
-![image-20231012144248737](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012144248737.png)
+![image-20231012144248737](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012144248737.png)
 
 ### Удаление пода
 
 `$kubectl delete hello`
 
-![image-20231012144331675](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012144331675.png)
+![image-20231012144331675](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012144331675.png)
 
 Полечение полной информации о pod
 
 `$kubectl describe pods hello`
 
-![image-20231012144544118](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012144544118.png)
+![image-20231012144544118](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012144544118.png)
 
 Как видно, под сейчас бежит на node - cl164r9u1m42kmu8oge4-unof
 
@@ -231,25 +231,25 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl exec -it hello sh` - запустит shell интерактивно
 
-![image-20231012145401824](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012145401824.png)
+![image-20231012145401824](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012145401824.png)
 
 Просмотр логов
 
 `$ubectl logs hello`
 
-![image-20231012145518281](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012145518281.png)
+![image-20231012145518281](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012145518281.png)
 
 Чтобы перенаправить порт и увидеть страничку пода нужно
 
 `$kubectl port-forward hello 7788:80`
 
-![image-20231012145804804](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012145804804.png)
+![image-20231012145804804](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012145804804.png)
 
 ### Создание и запуск подов через config файл (манифест)
 
 Минимальное количество строчек для запуска манифеста
 
-![image-20231012152159986](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012152159986.png)
+![image-20231012152159986](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012152159986.png)
 
 Конкретный формат поля-объекта `spec` зависит от типа объекта Kubernetes и содержит вложенные поля, предназначенные только для используемого объекта. В [справочнике API Kubernetes](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/) можно найти формат спецификации любого объекта Kubernetes. Например, формат `spec` для объекта Pod находится в [ядре PodSpec v1](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#podspec-v1-core), а формат `spec` для Deployment — в [DeploymentSpec v1 apps](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#deploymentspec-v1-apps).
 
@@ -257,11 +257,11 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl apply -f pod-myweb-ver1.yaml`
 
-![image-20231012152742275](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012152742275.png)
+![image-20231012152742275](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012152742275.png)
 
 Откроем порт
 
-![image-20231012152935154](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012152935154.png)
+![image-20231012152935154](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012152935154.png)
 
 Чтобы внести изменения, под необходимо удалить (delete) и занаво создать на основе манифеста с изменениями
 
@@ -281,11 +281,11 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 это пары ключ/значение, которые прикрепляются к объектам, таким как pod. Могут быть прикреплены к объектам в момент создания и впоследствии добавляться и изменяться в любое время. Для каждого объекта может быть определен набор меток ключ/значение. Каждый ключ должен быть уникальным для данного объекта.
 
-![image-20231012185851210](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012185851210.png)
+![image-20231012185851210](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012185851210.png)
 
 Чтобы запустить 2 контейнера в 1 pod необходимо просто продублировать:
 
-![image-20231012190906678](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012190906678.png)
+![image-20231012190906678](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012190906678.png)
 
 Чтобы получить к ним доступ нужно по аналогии:
 
@@ -297,13 +297,13 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 Итоговый манифест:
 
-![image-20231012192102751](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012192102751.png)
+![image-20231012192102751](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012192102751.png)
 
 ## 9. Создание и управление Deployment  
 
 То что должно получиться 
 
-![image-20231012193634185](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012193634185.png)
+![image-20231012193634185](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012193634185.png)
 
 Проверка наличия Deployment
 
@@ -311,13 +311,13 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl get deploy` - сокращенная версия
 
-![image-20231012194154610](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012194154610.png)
+![image-20231012194154610](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012194154610.png)
 
 Создание deployment
 
 `$kubectl create deployment vladimir-depoyment --image nginx:latest`
 
-![image-20231012194504465](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012194504465.png)
+![image-20231012194504465](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012194504465.png)
 
 Как видно этот деплоймент создал под (в начало добавил имя дейплоймента)
 
@@ -325,11 +325,11 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl describe deploy  vladimir-depoyment`
 
-![image-20231012194811140](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012194811140.png)
+![image-20231012194811140](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012194811140.png)
 
 ### Scale - масштабирование
 
-![image-20231012195141288](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012195141288.png)
+![image-20231012195141288](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012195141288.png)
 
 Создалось дополнительно 3 пода
 
@@ -337,33 +337,33 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl get rs`
 
-![image-20231012195333479](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012195333479.png)
+![image-20231012195333479](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012195333479.png)
 
 Если под выйдет из строя, то он тут же восстановится. Так все поды распределены по nodes.
 
-![image-20231012195455889](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012195455889.png)
+![image-20231012195455889](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012195455889.png)
 
 ### Autoscale
 
 `$kubectl autoscale deployment vladimir-depoyment --min=4 --max=6 --cpu-percent=80`
 
-![image-20231012200218642](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012200218642.png)
+![image-20231012200218642](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012200218642.png)
 
 Добавили к уже существующему deployment, (эта команда не сможет создать новый деплоймент) **hpa - horizontal pod autoscaler**
 
 Его можно так же просмотреть
 
-![image-20231012200514428](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012200514428.png)
+![image-20231012200514428](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012200514428.png)
 
 ### Просмотерть историю и статус всех deployment 
 
 `$kubectl rollout history deployment/vladimir-depoyment`
 
-![image-20231012200805910](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012200805910.png)
+![image-20231012200805910](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012200805910.png)
 
 `$kubectl rollout status deployment/vladimir-depoyment`
 
-![image-20231012201031797](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012201031797.png)
+![image-20231012201031797](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012201031797.png)
 
 ### Обновление в deployment, так же возврат и перемещение
 
@@ -377,7 +377,7 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 История выглядит следующим образом
 
-![image-20231012202320218](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012202320218.png)
+![image-20231012202320218](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012202320218.png)
 
 Чтобы переместиться на любой deploy из истории
 
@@ -391,25 +391,25 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 ### Созадние deploymet через манифест
 
-![image-20231012204931780](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012204931780.png)
+![image-20231012204931780](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012204931780.png)
 
 Создался deploy 
 
-![image-20231012205003612](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012205003612.png)
+![image-20231012205003612](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012205003612.png)
 
-![image-20231012205027088](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012205027088.png)
+![image-20231012205027088](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012205027088.png)
 
 ### Создание деплоя с указанием количества реплик
 
 В спецификации деплоя нужно указать сколько реплик нужно делать
 
-![image-20231012205657048](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012205657048.png)
+![image-20231012205657048](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012205657048.png)
 
 Тогда при запуске этого манифеста будет создаваться сразу 3 пода.
 
-![image-20231012213623456](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012213623456.png)
+![image-20231012213623456](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012213623456.png)
 
-![image-20231012213714324](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012213714324.png)
+![image-20231012213714324](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012213714324.png)
 
 ### Удаление
 
@@ -419,17 +419,17 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl delete deploy vladimir-depoyment` - этот deploy создавался в ручную
 
-![image-20231012214037995](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012214037995.png)
+![image-20231012214037995](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012214037995.png)
 
 ### Повторение команд
 
-![image-20231012214256487](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231012214256487.png)
+![image-20231012214256487](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231012214256487.png)
 
 ## 10. Создание и Управление - SERVICES 
 
 Что должно получиться
 
-![image-20231013182312041](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013182312041.png)
+![image-20231013182312041](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013182312041.png)
 
 Всего есть 4 вида сервисов, каждому виду соответсвует свое поведение.
 
@@ -451,7 +451,7 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl scale deployment vova-deloy --replicas 3`
 
-![image-20231013184452304](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013184452304.png)
+![image-20231013184452304](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013184452304.png)
 
 **Создание service --type=ClusterIP**
 
@@ -461,27 +461,27 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 **services** можно кратко писать **svc**
 
-![image-20231013184903622](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013184903622.png)
+![image-20231013184903622](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013184903622.png)
 
 Теперь если зайти на любой из воркеров (узел в кластере, а он в свою очередь развернут на ВМ, можно сравнить, ip node будет соотв ip ВМ на которой он равернут)
 
-![image-20231013185537514](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013185537514.png)
+![image-20231013185537514](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013185537514.png)
 
 Как видно изнутри кластера все работет
 
 ### Удаление service
 
-![image-20231013185829226](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013185829226.png)
+![image-20231013185829226](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013185829226.png)
 
 `$kubectl delete service vova-deloy`
 
-![image-20231013185925080](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013185925080.png)
+![image-20231013185925080](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013185925080.png)
 
 **Создание service --type=NodePort**
 
 `$kubectl expose deploy vova-deloy --type=NodePort --port 80`
 
-![image-20231013190530616](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013190530616.png)
+![image-20231013190530616](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013190530616.png)
 
 Он создал ClusterIP по умолчанию, также создал порт 31477. Если обратиться по этому порту с воркеров внутри кластера, то попадешь на приложение.
 
@@ -493,7 +493,7 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl describe nodes | grep ExternalIP`
 
-![image-20231013191451788](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013191451788.png)
+![image-20231013191451788](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013191451788.png)
 
 **Удаление**
 
@@ -503,11 +503,11 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 `$kubectl expose deploy vova-deloy --type=LoadBalancer --port 80`
 
-![image-20231013192209329](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013192209329.png)
+![image-20231013192209329](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013192209329.png)
 
 Как видно создался ExternalIP по которому LoadBalancer будет доступен. Если по нему перейти то будет доспуно наше приложение, которое развернуто на 3 nodes. Если обновлять они будут сменять друг друга.
 
-![image-20231013192344574](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013192344574.png)
+![image-20231013192344574](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013192344574.png)
 
 **Удалим все** 
 
@@ -519,29 +519,29 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 Сначала описываю ресурс "Deployment", после, начиная с --- описываю ресурс "Service"
 
-![image-20231013203808892](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013203808892.png)
+![image-20231013203808892](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013203808892.png)
 
 Запусе манифеста
 
 `$kubectl apply -f services-1-loadbalancer-single.yaml`
 
-![image-20231013203907731](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013203907731.png)
+![image-20231013203907731](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013203907731.png)
 
-![image-20231013204029548](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013204029548.png)
+![image-20231013204029548](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013204029548.png)
 
 Теперь можно подлючиться к LoadBalancer аналогично тому как это делалось выше через консоль.
 
-![image-20231013204144551](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013204144551.png)
+![image-20231013204144551](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013204144551.png)
 
 ### Теперь все тоже самое, только с несколькими контейнерами
 
-![image-20231013210652149](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013210652149.png)
+![image-20231013210652149](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013210652149.png)
 
 **Запуск**
 
 `$kubectl apply -f services-2-loadbalancer-mylti.yaml`
 
-![image-20231013210829411](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231013210829411.png)
+![image-20231013210829411](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231013210829411.png)
 
 Как видно у service открыто 2 порта. То есть по адресу 84.201.131.208:80 будет nginx, на 84.201.131.208:8888 будет tomcat
 
@@ -549,21 +549,21 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 ### Создание манифеста c Deployment, LoadBalancer и AutoScale
 
-![image-20231014005324984](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014005324984.png)
+![image-20231014005324984](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014005324984.png)
 
 **Запуск**
 
 `$kubectl apply -f service-3-loadbalancer-autoscaling.yaml`
 
-![image-20231014005446553](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014005446553.png)
+![image-20231014005446553](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014005446553.png)
 
-![image-20231014010224088](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014010224088.png)
+![image-20231014010224088](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014010224088.png)
 
 Проверка также показывает что все создалось корректно
 
 Повторение команд
 
-![image-20231014010601307](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014010601307.png)
+![image-20231014010601307](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014010601307.png)
 
 ## Создание и Управление - INGRESS Controllers  (не получилось)
 
@@ -571,13 +571,13 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 Но каждый такой service стоит денег и если много приложений это выходит дорого.  
 
-![image-20231014101224290](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014101224290.png)
+![image-20231014101224290](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014101224290.png)
 
 Можно создать этот же сэтап, только с использованием Ingress controller (это будет значительно дешевле)
 
 Суть в том, чтобы на те же самые Deployment создать Service типа ClusterIP (он по умолчанию). И для того чтобы можно было подключиться к приложению извне нужно запустить еще одно приложение (Ingress Controller) и уже к нему Service типа LoadBalancer (и привязать к нему все доменные имена). Чтобы Ingress Controller мог правильно связать доменное имя приложение (подключиться к сервису типа ClusterIP) необходимо задать правила (Ingress rules).
 
-![image-20231014102839841](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014102839841.png)
+![image-20231014102839841](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014102839841.png)
 
 Ingress Controllers их уже очень много создано и [можно выбирать любой под свои нужды](https://docs.google.com/spreadsheets/d/191WWNpjJ2za6-nbG4ZoUMXMpUK8KlCIosvQB0f-oq3k/edit#gid=907731238). 
 
@@ -589,25 +589,25 @@ Ingress Controllers их уже очень много создано и [мож�
 
 После запуска этой команды запустится процесс, который не будет видно из текущего NameSpace. Но посмотреть можно:
 
-![image-20231014103855298](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014103855298.png)
+![image-20231014103855298](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014103855298.png)
 
 Как видно, дополнительно, создался Service типа LoadBalancer (его так же можно увидеть в YandexCloud)
 
 Создал зону в CloudDNS и в ней 3 записи ссылающиеся на ExternalIP LoadBalancer.
 
-![image-20231014105352176](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014105352176.png)
+![image-20231014105352176](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014105352176.png)
 
 Deployment сделаем командами
 
 `$kubectl create deployment main --image=nginx:latest`
 
-![image-20231014110436776](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014110436776.png)
+![image-20231014110436776](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014110436776.png)
 
 Сделаем количесво реплик равное 2 половине приложений.
 
 `$kubectl scale deployment main --replicas 2`
 
-![image-20231014111121213](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014111121213.png)
+![image-20231014111121213](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014111121213.png)
 
 Созание Services типа ClusterIP (т.е можно не указывать тип, он по умолчанию)
 
@@ -615,7 +615,7 @@ Deployment сделаем командами
 
 Чтобы увидеть немного больше `-o wide`
 
-![image-20231014111655817](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014111655817.png)
+![image-20231014111655817](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014111655817.png)
 
 ### Написание манифеста для Ingress rule
 
@@ -637,7 +637,7 @@ HelmChart - упаковка приложения в helm
 
 Суть заключается в том, что при помощи helm можно запускать сразу все манифесты.
 
-![image-20231014141242341](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014141242341.png)
+![image-20231014141242341](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014141242341.png)
 
 **values.yaml** - содержит переменные по умолчанию, которые исп. в файлах папки template
 
@@ -677,25 +677,25 @@ HelmChart - упаковка приложения в helm
 
 После показан минимальный скелет (шаблон) для использования helm
 
-![image-20231014150746029](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014150746029.png)
+![image-20231014150746029](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014150746029.png)
 
 Скелет можно создать автоматически
 
 `$helm create Chart-Auto` - создастся папка с именем Chart-Auto
 
-![image-20231014151627861](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014151627861.png)
+![image-20231014151627861](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014151627861.png)
 
 ### Использование пременных
 
-![image-20231014153859776](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014153859776.png)
+![image-20231014153859776](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014153859776.png)
 
 Создаем переменные в файле values.yaml
 
-![image-20231014154301876](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014154301876.png)
+![image-20231014154301876](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014154301876.png)
 
 После изменяем в файле deployment.yaml значение на переменную
 
-![image-20231014154657854](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014154657854.png)
+![image-20231014154657854](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014154657854.png)
 
 `.Values.` - это обращение к файлу values.yaml
 
@@ -703,9 +703,9 @@ HelmChart - упаковка приложения в helm
 
 Helm deploy - называется release  
 
-![image-20231014180647260](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014180647260.png)
+![image-20231014180647260](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014180647260.png)
 
-![image-20231014180703960](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014180703960.png)
+![image-20231014180703960](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014180703960.png)
 
 ### Команды helm
 
@@ -721,13 +721,13 @@ Helm deploy - называется release
 
 `$helm package Chart_Semchishin` 
 
-![image-20231014183422469](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014183422469.png)
+![image-20231014183422469](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014183422469.png)
 
 И инсталлировать можно сразу из этого архива.
 
 `$helm install app App-HelmChart-0.1.0.tgz`
 
-![image-20231014183620282](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014183620282.png)
+![image-20231014183620282](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014183620282.png)
 
 ### Запуск из интернета
 
@@ -741,7 +741,7 @@ Helm deploy - называется release
 
 ### Повторение команд
 
-![image-20231014185344914](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231014185344914.png)
+![image-20231014185344914](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231014185344914.png)
 
 
 
