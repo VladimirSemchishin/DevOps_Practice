@@ -18,7 +18,7 @@ sudo apt install apt-transport-https -  пакет дополнение для �
 
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -` - скачивание и установка ключа
 
-![image-20231001121958018](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001121958018.png)
+![image-20231001121958018](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001121958018.png)
 
 `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"` -  скачивать только стабильные версии (добавили репозиторий)
 
