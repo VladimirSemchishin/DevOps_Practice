@@ -55,4 +55,4 @@
      - [Цикл](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/Ansible_start/vm-controller-project/playbookloop.yml)
      - [Roles](https://github.com/VladimirSemchishin/DevOps_Practice/tree/main/Ansible_start/vm-controller-project/roles/deploy_apache_web)
 
-6. GitLub
+6. [GitLub](https://gitlab.com/semchishin/task_sibintek)
