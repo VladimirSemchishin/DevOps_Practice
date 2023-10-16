@@ -28,7 +28,7 @@ sudo apt install apt-transport-https -  пакет дополнение для �
 
 `sudo systemctl status docker` - посмотерть что Docker Engine работает 
 
-![image-20231001122519836](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001122519836.png)
+![image-20231001122519836](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001122519836.png)
 
 `sudo usermod -aG docker $USER` -  подификация юзера, чтобы можно было запускать команды докера без sudo (точнее добавляем юзера в группу docker, после чего не нужно исп. sudo)
 
@@ -50,7 +50,7 @@ sudo apt install apt-transport-https -  пакет дополнение для �
 
 `docker run -d -p 1234:8080 tomcat` - запустить контейнер аналогично только на бэкнраунде (командная строка будет доступна) по выполнению он выдаст идентификатор бегущего контейнера
 
-![image-20231001130300421](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001130300421.png)
+![image-20231001130300421](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001130300421.png)
 
 `docker run -d -p 12345:80 nginx` - установит и запустит контейнер если небыл скачен образ (важно знать изначально на каком порту будет бежать процесс)
 
@@ -58,27 +58,27 @@ sudo apt install apt-transport-https -  пакет дополнение для �
 
 `docker rm 69cf50235653` - удалить контейнер 
 
-![image-20231001133127359](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001133127359.png)
+![image-20231001133127359](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001133127359.png)
 
 `docker build -t vova:v1 .`   - создание образа на основе Dockerfile. `-t` добавляет тэг, в данном случае это `v1` (если не использовать будет всегда latest), а имя образа `vova`  
 
-![image-20231001134100238](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001134100238.png)
+![image-20231001134100238](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001134100238.png)
 
-![image-20231001134246549](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001134246549.png)
+![image-20231001134246549](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001134246549.png)
 
 `docker run -d -p 7777:80 vova:v1`  - создании контейнера обязательно стоит указывать версию образар, иначе не запустится
 
 `docker tag vova:v1 vova:copy` - переименовать тэг (по факту создастся дубликат)
 
-![image-20231001141300363](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001141300363.png)
+![image-20231001141300363](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001141300363.png)
 
 `docker exec -it 3f0e6b33d825 /bin/bash` - войти в контейнер (внутри него можно что то изменить)
 
-![image-20231001141317628](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001141317628.png)
+![image-20231001141317628](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001141317628.png)
 
 `docker commit 3f0e6b33d825 vova:v2` - создать на основе контейнера образ (для этого нужен id измененного контенера 3f0e6b33d825)
 
-![image-20231001141903599](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001141903599.png)
+![image-20231001141903599](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001141903599.png)
 
 `docker run -d -p 888:80 vova:v2` - создать контейнер, на основе нового образа (образ на основе измененного контейнера)
 
@@ -88,7 +88,7 @@ sudo apt install apt-transport-https -  пакет дополнение для �
 
 `docker pull tomcat` - скачать образ и ничего не делать 
 
-![image-20231001124456570](/home/smvn/snap/typora/86/.config/Typora/typora-user-images/image-20231001124456570.png)
+![image-20231001124456570](https://github.com/VladimirSemchishin/DevOps_Practice/blob/main/For_photo/image-20231001124456570.png)
 
 ### Как запускать Docker Container
 
