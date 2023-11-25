@@ -1,0 +1,39 @@
+# syntax=docker/dockerfile:1
+FROM golang:1.21 AS build-catgpt
+
+# создаю каталого внутри создаваемого образа - это место назначения по умолчанию
+WORKDIR /my-project-golang
+
+# pre-copy/cache go.mod для предварительной загрузки зависимостей и их 
+# повторной загрузки в последующих сборках только в случае их изменения
+COPY go.mod go.sum ./
+
+# этот шаг устанавливает (download) модули go в каталог внутри образа и проверяетс корректность файла go.sum (verify) и самого модуля
+# Теперь есть весь инструментарий golang:1.21 и все зависимости Go установленные в образ
+RUN go mod download && go mod verify
+
+# копирую исходный код в изображение
+COPY catgpt/ ./
+
+
+RUN go build -v -o /usr/local/bin/catgpt-app ./...
+
+# Запускаю приложение командой, которая выполнится после сборки контейнера
+#CMD ["catgpt-app"]
+#EXPOSE 8888
+
+# Run the tests in the container
+#FROM build-stage AS run-test-stage
+#RUN go test -v ./...
+
+FROM gcr.io/distroless/static-debian12:latest-amd64 AS catgpt
+
+#WORKDIR /
+
+# Копирую бинарник в более легкий образ
+COPY --from=build-catgpt  /usr/local/bin/catgpt-app /
+
+EXPOSE 8080 9090
+
+CMD [ "/catgpt-app" ]
+
